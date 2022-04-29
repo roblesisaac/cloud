@@ -1,4 +1,4 @@
-import { convert, obj, type } from "./natives/utils.js";
+import { convert, obj, type } from "./utils.js";
 
 const globalSteps = {
   "&": function(res) {
@@ -104,4 +104,4 @@ const globalSteps = {
   }
 }
 
-export = { globalSteps };
+export { globalSteps };
