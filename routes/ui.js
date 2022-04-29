@@ -2,7 +2,7 @@ import { api } from "@serverless/cloud";
 import { Peach } from "../natives.peach.js";
 
 
-const render = new Peach({
+const ui = new Peach({
   steps: {
     serveUi: function() {
       this.res.send("serving ui");
@@ -20,4 +20,4 @@ api.get("/:sheetName", (req, res) => {
   render.serve(req, res);
 });
 
-export default render;
+export default ui;
