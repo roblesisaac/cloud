@@ -16,4 +16,4 @@ const db = new Peach({
 
 
 
-export { db };
+export default db;
