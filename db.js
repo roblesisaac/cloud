@@ -14,9 +14,6 @@ const server = new Peach({
   }
   });
 
-api.get("/db/:name", async (req, res) => {
 
-  server.send(req, res);
-  
-});
 
+export default server;
