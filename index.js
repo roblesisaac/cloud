@@ -5,7 +5,7 @@ import { Peach, convert, obj, type } from "./natives/peach.js";
 
 api.get("/api", async (req, res) => {
 
-  new Chain({
+  new Peach({
     steps: {
       respond: () => res.send(`<h1>hello response!</h1>`)
     },
