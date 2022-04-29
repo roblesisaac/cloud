@@ -12,7 +12,8 @@ const ui = new Peach({
   instruct: {
     render: (req, res) => [
       {
-        req, res,
+        req,
+        res,
         params: req.params
       },
       { sheetName: "params.sheetName" },
