@@ -8,7 +8,7 @@ const ui = new Peach({
     }
   },
   instruct: {
-    serve: (req, res) => [
+    render: (req, res) => [
       { req, res, sheetName: req.params.sheetName },
       "serveUi"
     ]
@@ -16,7 +16,7 @@ const ui = new Peach({
 });
 
 api.get("/:sheetName", (req, res) => {
-  render.serve(req, res);
+  ui.render(req, res);
 });
 
 export default ui;
