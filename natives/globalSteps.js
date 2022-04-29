@@ -79,7 +79,7 @@ const globalSteps = {
   },
   incr: function(prop) {
     var counter = obj.tip(this, prop);
-    counter.obj[counter.prop]++;
+    counter.item[counter.prop]++;
   },
   isString: function(item) {
     var constant = obj.deep(this, item);
