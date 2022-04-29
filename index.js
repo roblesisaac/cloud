@@ -3,7 +3,7 @@ import { Peach, convert, obj, type } from "./natives/peach.js";
 
 
 
-api.get("/api", async (req, res) => {
+api.get("/api/:name", async (req, res) => {
 
   new Peach({
     steps: {
