@@ -3,10 +3,11 @@ import { Peach, convert, obj, type } from "./natives/peach.js";
 
 const db = new Peach({
   steps: {
-    serve: function (message) {
+    serve: function(message) {
       const { res } = this;
+      const repsonse = message();
       
-      res.send(message())
+      res.send(response)
     }
   },
   instruct: {
@@ -16,16 +17,14 @@ const db = new Peach({
         name: req.params.name,
         lastName: req.query.last
       },
-      { 
-        serve: message
-      }
+      { serve: message }
     ]
   }
 });
 
 api.get("/db/:name", async (req, res) => {
   db.respond(req, res, function() {
-    return `<h1> Hola ${this.name} ${ this.lastName }</h1>`
+    return `<h1> Hola </h1>`
   });
 });
 
