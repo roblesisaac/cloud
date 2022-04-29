@@ -6,7 +6,7 @@ const db = new Peach({
     serve: function (message) {
       const { req, res } = this;
       
-      res.send(`<h1>${ message } ${this.name}</h1>`)
+      res.send(`<h1>${ message } ${this.name} { req.query.last }</h1>`)
     }
   },
   instruct: {
