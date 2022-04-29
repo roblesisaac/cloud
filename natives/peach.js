@@ -261,7 +261,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
               def = obj.tip(memory, key),
               { item, prop } = def;
               
-          item[prop] = obj.deep(memory, value) || value;
+          item[prop] = obj.deep(memory, value) || "s"+value;
         }
 
         memory._remember(data);
