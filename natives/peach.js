@@ -1,6 +1,6 @@
-import { convert, obj, type } from "./utils.js";
-import { Memory } from "./memory.js";
-import { globalSteps } from "./globalSteps.js";
+import { convert, obj, type } from "./natives/utils.js";
+import { Memory } from "./natives/memory.js";
+import { globalSteps } from "./natives/globalSteps.js";
 
 function Peach(blueprint) {
   var instruct = blueprint.instruct;
