@@ -83,4 +83,4 @@ Memory.prototype._addTools = function(data) {
   return this;
 }
 
-exports = { Memory };
+export = { Memory };
