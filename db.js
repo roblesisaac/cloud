@@ -4,7 +4,9 @@ import { Peach, convert, obj, type } from "./natives/peach.js";
 const db = new Peach({
   steps: {
     serve: function(message) {
-      this.res.send(message.call(this));
+      const { res } = this;
+      
+      res.send(message.call(this));
     }
   },
   instruct: {
