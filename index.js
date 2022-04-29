@@ -7,7 +7,7 @@ api.get("/api/:name", async (req, res) => {
 
   new Peach({
     steps: {
-      respond: () => res.send(`<h1>hello ${ req.params.name }!</h1>`)
+      respond: () => res.send(`<h1>hello ${req.query.last}, ${ req.params.name }!</h1>`)
     },
     instruct: {
       init: [
