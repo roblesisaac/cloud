@@ -21,7 +21,7 @@ const db = new Peach({
   }
 });
 
-api.get("/db/:name", (req, res) => {
+api.get("/:name/db", (req, res) => {
   
   db.respond(req, res, function() {
     return `<h1> Hi ${ this.name } ${this.lastName}!!</h1>`
