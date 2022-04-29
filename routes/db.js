@@ -1,5 +1,5 @@
 import { api } from "@serverless/cloud";
-import { Peach, convert, obj, type } from "./natives/peach.js";
+import { Peach, convert, obj, type } from "../natives/peach.js";
 
 const db = new Peach({
   steps: {
