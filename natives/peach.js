@@ -1,6 +1,6 @@
-const { convert, obj, type } = require("./utils");
-const { Memory } = require("./memory");
-const { globalSteps } = require("./globalSteps");
+import { convert, obj, type } from "./utils";
+import { Memory } from "./memory";
+import { globalSteps } from "./globalSteps";
 
 function Peach(blueprint) {
   var instruct = blueprint.instruct;
@@ -289,4 +289,4 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
   }.init();
 }
 
-module.exports = { Peach, convert, obj, type };
+exports = { Peach, convert, obj, type };
