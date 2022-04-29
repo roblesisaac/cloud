@@ -10,8 +10,9 @@ const db = new Peach({
     }
   },
   instruct: {
-    respond: (req, message) => [
+    respond: (req, res, message) => [
       { 
+        res,
         name: req.params.name,
         lastName: req.query.last
       },
