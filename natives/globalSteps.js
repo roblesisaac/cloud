@@ -104,4 +104,4 @@ const globalSteps = {
   }
 }
 
-exports = { globalSteps };
+export = { globalSteps };
