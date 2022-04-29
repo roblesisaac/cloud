@@ -1,4 +1,4 @@
-import { api } from "@cloud";
+import { api } from "@serverless/cloud";
 import { Peach } from "../natives.peach.js";
 
 
@@ -10,10 +10,12 @@ const render = new Peach({
   },
   instruct: {
     serve: (req, res) => [
-      { req, res },
+      { req, res, sheetName: req.params.sheetName },
       "serveUi"
     ]
   }
 });
 
-api.send()
+api.get(":sheetName", (req, res) => {
+  render.serve(req, res);
+});
