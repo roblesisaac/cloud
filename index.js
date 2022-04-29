@@ -10,7 +10,10 @@ api.get("/api", async (req, res) => {
       respond: () => res.send(`<h1>hello response!</h1>`)
     },
     instruct: {
-      init: ["respond"]
+      init: [
+        { wait: 10 },
+        "respond"
+      ]
     }
   }).init();
   
