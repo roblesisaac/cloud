@@ -1,5 +1,5 @@
 import { api } from "@serverless/cloud";
-import { Peach } from "../natives.peach.js";
+import { Peach } from "./natives.peach.js";
 
 
 const ui = new Peach({
