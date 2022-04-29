@@ -4,7 +4,7 @@ import { Peach } from "../natives/peach.js";
 const ui = new Peach({
   steps: {
     serveUi: function() {
-      const { res, sheetName, params } = this;
+      const { res, sheetName } = this;
       
       res.json(sheetName);
     }
