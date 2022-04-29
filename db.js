@@ -5,9 +5,8 @@ const db = new Peach({
   steps: {
     serve: function(message) {
       const { res } = this;
-      const repsonse = message();
       
-      this.res.send("hi");
+      this.res.send("hi" + message());
     }
   },
   instruct: {
