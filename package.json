@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "cloud",
-    "test": "cloud test"
+    "test": "cloud test",
+    "git" : "cloud --template https://github.com/roblesisaac/cloud.git"
   },
   "devDependencies": {
     "@serverless/cloud": "^2.0.0"
