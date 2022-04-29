@@ -1,3 +1,5 @@
-export function test() {
-  return "this is a test";
+const test = function() {
+  return "this is a test !";
 }
+
+export { test };
