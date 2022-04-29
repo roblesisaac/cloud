@@ -7,7 +7,7 @@ const db = new Peach({
       const { res } = this;
       const repsonse = message();
       
-      res.send(response)
+      this.res.send("hi");
     }
   },
   instruct: {
@@ -23,9 +23,11 @@ const db = new Peach({
 });
 
 api.get("/db/:name", async (req, res) => {
+  
   db.respond(req, res, function() {
     return `<h1> Hola </h1>`
   });
+  
 });
 
 export default db;
