@@ -1,4 +1,4 @@
-const { convert, obj, type } = require("./utils");
+import { convert, obj, type } from "./utils";
 
 function Memory(peach) {
   this._absorb(peach);
@@ -83,4 +83,4 @@ Memory.prototype._addTools = function(data) {
   return this;
 }
 
-module.exports = { Memory };
+exports = { Memory };
