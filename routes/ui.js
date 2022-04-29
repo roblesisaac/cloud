@@ -6,7 +6,7 @@ const ui = new Peach({
     serveUi: function() {
       const { res, sheetName } = this;
       
-      res.send("serving a simple uisheet.com " + sheetName);
+      res.json(this.params);
     }
   },
   instruct: {
