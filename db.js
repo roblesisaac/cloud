@@ -16,6 +16,7 @@ const db = new Peach({
         name: req.params.name,
         lastName: req.query.last
       },
+      { wait: 2 },
       { serve: message }
     ]
   }
@@ -24,7 +25,7 @@ const db = new Peach({
 api.get("/db/:name", (req, res) => {
   
   db.respond(req, res, function() {
-    return `<h1> Hi ${ this.name } ${this.lastName} </h1>`
+    return `<h1> Hi ${ this.name } ${this.lastName}!</h1>`
   });
   
 });
