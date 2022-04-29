@@ -1,4 +1,4 @@
-const { convert, obj, type } = require("./utils");
+import { convert, obj, type } from "./utils";
 
 const globalSteps = {
   "&": function(res) {
@@ -104,4 +104,4 @@ const globalSteps = {
   }
 }
 
-module.exports = { globalSteps };
+exports = { globalSteps };
