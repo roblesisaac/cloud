@@ -16,4 +16,4 @@ const server = new Peach({
 
 
 
-export default server;
+export server;
