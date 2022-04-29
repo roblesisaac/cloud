@@ -1,4 +1,4 @@
-import { convert, obj, type } from "./utils";
+import { convert, obj, type } from "./utils.js";
 
 function Memory(peach) {
   this._absorb(peach);
