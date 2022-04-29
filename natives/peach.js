@@ -64,7 +64,7 @@ function buildPeach(stepsArr, peach, peachName) {
     return new Promise(function(res, rej) {
       var memry = getMemory(res, rej, peachName),
           args = memry._args,
-          arg = args[1] ? args.shift() : args[0];
+          arg = args[1] ? args.shift() : args[0],
           steps = getSteps(arg);
           
       steps.method(memry, null, parentSpecial);
