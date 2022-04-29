@@ -173,4 +173,4 @@ addMethodTo(String, "includesAny", function() {
   return !!matchCount;
 });
 
-exports = { obj, convert, type };
+export = { obj, convert, type };
