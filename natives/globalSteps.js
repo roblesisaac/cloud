@@ -1,4 +1,4 @@
-import { convert, obj, type } from "./utils";
+import { convert, obj, type } from "./natives/utils.js";
 
 const globalSteps = {
   "&": function(res) {
