@@ -16,7 +16,7 @@ const ui = new Peach({
         res,
         params: req.params
       },
-      { sheetName: "params" },
+      { sheetName: "params.sheetName" },
       "serveUi"
     ]
   }
