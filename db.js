@@ -24,7 +24,7 @@ const db = new Peach({
 api.get("/db/:name", async (req, res) => {
   
   db.respond(req, res, function() {
-    return `<h1> Hi ${ Date.now() } </h1>`
+    return `<h1> Hi ${ Object.keys(this).join("") } </h1>`
   });
   
 });
