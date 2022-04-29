@@ -16,7 +16,6 @@ const db = new Peach({
         name: req.params.name,
         lastName: req.query.last
       },
-      { wait: 2 },
       { serve: message }
     ]
   }
