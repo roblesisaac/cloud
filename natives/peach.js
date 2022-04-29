@@ -289,4 +289,4 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
   }.init();
 }
 
-exports = { Peach, convert, obj, type };
+export = { Peach, convert, obj, type };
