@@ -8,7 +8,9 @@ const server = new Peach({
     }
   },
   instruct: {
-    init: (req, res) => { respond: [req, res] }
+    init: (req, res) => [
+      { respond: [req, res] }
+    ]
   }
   });
 
