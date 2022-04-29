@@ -3,19 +3,25 @@ import { Peach, convert, obj, type } from "./natives/peach.js";
 
 const db = new Peach({
   steps: {
-    respond: function (req, res) {
-      res.send(`<h1>hello ${ req.params.name } ${req.query.last}!!!</h1>`)
+    serve: function (message) {
+      { res, res } = this;
+      
+      res.send(`<h1>${ message } ${this.name}</h1>`)
     }
   },
   instruct: {
-    send: (req, res) => [
-      { respond: [req, res] }
+    respond: (req, res) => [
+      { name: req.params.name },
+      { 
+        serve: "hi",
+        req, res
+      }
     ]
   }
 });
 
 api.get("/db/:name", async (req, res) => {
-  db.send(req, res);
+  db.respond(req, res);
 });
 
 export default db;
