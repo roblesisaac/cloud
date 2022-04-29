@@ -127,7 +127,7 @@ var obj = {
 
     return arrProps.length > 1 ?
       this.tip(nested, arrProps, true) : {
-        obj: nested,
+        item: nested,
         prop: arrProps[0]
       };
   }
