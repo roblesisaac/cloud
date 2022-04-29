@@ -6,22 +6,26 @@ const db = new Peach({
     serve: function (message) {
       const { req, res } = this;
       
-      res.send(`<h1>${ message } ${this.name} ${ req.query.last }</h1>`)
+      res.send(message(req, res))
     }
   },
   instruct: {
-    respond: (req, res) => [
-      { name: req.params.name },
+    respond: (req, message) => [
       { 
-        serve: "hi",
-        req, res
+        name: req.params.name,
+        lastName: req.query.last
+      },
+      { 
+        serve: message
       }
     ]
   }
 });
 
 api.get("/db/:name", async (req, res) => {
-  db.respond(req, res);
+  db.respond(req, function(req, res) {
+    return `<h1>Hola ${this.name} ${ this.lastName }</h1>`
+  });
 });
 
 export default db;
