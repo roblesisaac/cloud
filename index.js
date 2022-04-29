@@ -6,15 +6,15 @@ const server = new Peach({
     respond: () => res.send(`<h1>hello ${req.query.last}, ${ req.params.name }!</h1>`)
   },
   instruct: {
-    init: [
+    init: (req, res) => [
       { wait: 1 },
       "respond"
     ]
   }
-  }).init();
+  });
 
 api.get("/api/:name", async (req, res) => {
 
-  server.init();
+  server.init(req, res);
   
 });
