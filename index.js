@@ -8,7 +8,7 @@ const server = new Peach({
     }
   },
   instruct: {
-    init: (req, res) => [
+    send: (req, res) => [
       { respond: [req, res] }
     ]
   }
@@ -16,6 +16,6 @@ const server = new Peach({
 
 api.get("/api/:name", async (req, res) => {
 
-  server.init(req, res);
+  server.send(req, res);
   
 });
