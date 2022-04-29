@@ -16,6 +16,6 @@ const render = new Peach({
   }
 });
 
-api.get(":sheetName", (req, res) => {
+api.get("/:sheetName", (req, res) => {
   render.serve(req, res);
 });
