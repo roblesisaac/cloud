@@ -6,7 +6,11 @@ const ui = new Peach({
     serveUi: function() {
       const { res, sheetName, params } = this;
       
-      res.json(this);
+      const data = {};
+      
+      Object.keys(this).forEach(param => data[param] = this[param]);
+      
+      res.json(data);
     }
   },
   instruct: {
