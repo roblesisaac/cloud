@@ -3,12 +3,14 @@ import { Peach, convert, obj, type } from "./natives/peach.js";
 
 const server = new Peach({
   steps: {
-    respond: () => res.send(`<h1>hello ${ req.params.name } ${req.query.last}!</h1>`)
+    respond: function (req, res) {
+      res.send(`<h1>hello ${ req.params.name } ${req.query.last}!</h1>`)
+    }
   },
   instruct: {
     init: (req, res) => [
       { wait: 1 },
-      "respond"
+      { respond: [req, res] }
     ]
   }
   });
