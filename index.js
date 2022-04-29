@@ -11,7 +11,7 @@ api.get("/api", async (req, res) => {
     },
     instruct: {
       init: [
-        { wait: 2 },
+        { wait: 1 },
         "respond"
       ]
     }
