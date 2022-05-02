@@ -1,4 +1,4 @@
-import { api, params } from "@serverless/cloud";
+import { api } from "@serverless/cloud";
 import { Peach } from "../natives/peach.js";
 
 const ui = new Peach({
@@ -22,7 +22,7 @@ const ui = new Peach({
 //         "route"
        ];
       
-      var data = { params: params };
+      var data = {};
       
       keys.forEach(key => data[key] = req[key]);
       
