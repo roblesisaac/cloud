@@ -73,7 +73,12 @@ function buildPeach(stepsArr, peach, peachName) {
 
   peachMethod.steps = getSteps;
   peachMethod.step = getStep;
-  peachMethod._ = function(args) {
+
+  if (peachName != "run") {
+    peach._library.peachs[peachName] = peachMethod;
+  }
+
+  obj.assignNative(peach, peachName+"_", function(args) {
     return function(res, next) {
       var { _args, _step } = this,
           { specialProp, peach, methodName } = _step;
@@ -82,12 +87,7 @@ function buildPeach(stepsArr, peach, peachName) {
       
       peachMethod(this, specialProp, peach[methodName]).then(next);
     }
-  }; 
-
-  if (peachName != "run") {
-    peach._library.peachs[peachName] = peachMethod;
-  }
-
+  });
   obj.assignNative(peach, peachName, peachMethod);
 }
 
