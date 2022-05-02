@@ -7,19 +7,19 @@ const ui = new Peach({
       const { res, sheetName, req } = this;
       
       var keys = [
-        "rawHeaders",
-        "url",
-        "method",
-        "client",
-        "ip",
-        "baseUrl",
-        "originalUrl",
-        "_parsedUrl",
-        "apiGateway",
+//         "rawHeaders",
+//         "url",
+//         "method",
+//         "client",
+//         "ip",
+//         "baseUrl",
+//         "originalUrl",
+//         "_parsedUrl",
+//         "apiGateway",
         "requestContext",
-        "upgrade",
-        "_cloud",
-        "route"
+//         "upgrade",
+//         "_cloud",
+//         "route"
        ];
       
       var data = {};
