@@ -6,7 +6,23 @@ const ui = new Peach({
     serveUi: function() {
       const { res, sheetName, req } = this;
       
-      res.json(Object.keys(req));
+      var keys = [
+        "rawHeaders",
+        "url",
+        "method",
+        "client",
+        "ip",
+        "baseUrl",
+        "originalUrl",
+        "_parsedUrl",
+        "route"
+       ];
+      
+      var data = {};
+      
+      keys.forEach(key => data[key] = req[key]);
+      
+      res.json(data);
     }
   },
   instruct: {
