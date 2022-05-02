@@ -22,7 +22,7 @@ const ui = new Peach({
       
 //       keys.forEach(key => data[key] = req[key]);
       
-      res.json(Obect.keys(req));
+      res.json(Object.keys(req));
     }
   },
   instruct: {
