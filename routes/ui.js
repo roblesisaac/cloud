@@ -4,15 +4,15 @@ import { Peach } from "../natives/peach.js";
 const ui = new Peach({
   steps: {
     serveUi: function() {
-      const { res, sheetName } = this;
+      const { res, sheetName, req } = this;
       
-      res.send(`<h1>${ sheetName }</h1>`);
+      res.json(Object.keys(req));
     }
   },
   instruct: {
     render: (req, res) => [
       {
-        res,
+        res, req,
         params: req.params
       },
       { sheetName: "params.sheetName" },
