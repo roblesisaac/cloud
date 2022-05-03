@@ -26,7 +26,7 @@ const ui = new Peach({
       
       keys.forEach(key => data[key] = req[key]);
       
-      res.json(data);
+      res.json({ data });
     }
   },
   instruct: {
