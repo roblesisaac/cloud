@@ -1,6 +1,6 @@
 import { api, params } from "@serverless/cloud";
 import { Peach, convert, obj, type } from "../natives/peach.js";
-// import fetch from "node-fetch";
+import fetch from "node-fetch";
 
 const db = new Peach({
   steps: {
@@ -28,18 +28,14 @@ const db = new Peach({
     serve: function(message) {
       const { res } = this;
       
-      res.send(message.call(this));
+      res.send(message);
     }
   },
   instruct: {
     respond: (req, res, message) => [
-      "dbApi"
-      // { 
-      //   res,
-      //   name: req.params.name,
-      //   lastName: req.query.last
-      // },
-      // { serve: message }
+      { req, res },
+      "dbApi",
+      "serve"
     ]
   }
 });
