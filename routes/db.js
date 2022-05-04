@@ -16,7 +16,7 @@ const db = new Peach({
   instruct: {
     respond: (req, res) => [
       { req, res },
-      "dbApi",
+//       "dbApi",
       "serve"
     ]
   }
