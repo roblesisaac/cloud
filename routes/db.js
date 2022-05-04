@@ -6,7 +6,6 @@ const db = new Peach({
   steps: {
     firstStep: function() {
       console.log("hi hola");
-      this.next("hola");
     },
     serve: function(last) {
       const { res } = this;
