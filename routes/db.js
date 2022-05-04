@@ -10,7 +10,7 @@ const db = new Peach({
     serve: function(last) {
       const { respond } = this;
       
-      res.send({ param: params.MDE, last: Object.keys(last) });
+      respond.send({ param: params.MDE, last: Object.keys(last) });
     }
   },
   instruct: {
