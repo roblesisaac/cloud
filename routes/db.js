@@ -25,10 +25,10 @@ const db = new Peach({
 //       const data = await response.json();
       this.next(params.MDE);
     },
-    serve: function(last) {
+    serve: function() {
       const { res } = this;
       
-      res.send({ message: "hola", last });
+      res.send({ message: "hola" });
     }
   },
   instruct: {
