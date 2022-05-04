@@ -41,7 +41,8 @@ const db = new Peach({
 });
 
 api.get("/:name/db", (req, res) => {  
-  db.respond(req, res);  
+  res.send("hi");
+//   db.respond(req, res);  
 });
 
 export default db;
