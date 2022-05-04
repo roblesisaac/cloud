@@ -7,10 +7,10 @@ const db = new Peach({
     dbApi: function() {
       this.next("hello");
     },
-    serve: function() {
+    serve: function(last) {
       const { res } = this;
       
-      res.send({ last: params.MDE });
+      res.send({ param: params.MDE, last });
     }
   },
   instruct: {
