@@ -5,12 +5,12 @@ import fetch from "node-fetch";
 const db = new Peach({
   steps: {
     dbApi: function() {
-      const body = {
-        collection:"sheets",
-        database:"uisheet",
-        dataSource:"peach",
-        projection: {"_id": 1}
-      };
+//       const body = {
+//         collection:"sheets",
+//         database:"uisheet",
+//         dataSource:"peach",
+//         projection: {"_id": 1}
+//       };
       
 //       const response = await fetch(params.MDE+"find", {
 //       	method: "post",
@@ -23,7 +23,7 @@ const db = new Peach({
 //       });
       
 //       const data = await response.json();
-      this.next(body);
+      this.next(params.MDE);
     },
     serve: function(message) {
       const { res } = this;
