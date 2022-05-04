@@ -12,7 +12,7 @@ const db = new Peach({
         projection: {"_id": 1}
       };
       
-      const response = await fetch(params.MDE+"find", {
+      const resp = await fetch(params.MDE+"find", {
       	method: "post",
       	body: JSON.stringify(body),
       	headers: {
@@ -22,20 +22,20 @@ const db = new Peach({
       	}
       });
       
-      const data = await response.json();
+      const data = await resp.json();
       this.next(data);
     },
-    serve: function(message) {
-      const { response } = this;
+    serve: function(data) {
+      const { rez } = this;
       
-      response.send(message);
+      rez.send(data);
     }
   },
   instruct: {
-    respond: (req, response) => [
+    respond: (req, rez) => [
       "dbApi",
       { 
-        response,
+        rez,
       },
       { serve: message }
     ]
