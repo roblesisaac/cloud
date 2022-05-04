@@ -28,7 +28,7 @@ const db = new Peach({
     serve: function(data) {
       const { rez } = this;
       
-      rez.send(data);
+      rez.send(typeof data);
     }
   },
   instruct: {
