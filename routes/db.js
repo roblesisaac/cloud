@@ -28,24 +28,20 @@ const db = new Peach({
     serve: function(message) {
       const { res } = this;
       
-      res.send(message);
+      res.send("hi");
     }
   },
   instruct: {
-    respond: (req, res, message) => [
-      { req, res },
-      "dbApi",
+    respond: (req, res) => [
+//       { req, res },
+//       "dbApi",
       "serve"
     ]
   }
 });
 
-api.get("/:name/db", (req, res) => {
-  
-  db.respond(req, res, function() {
-    return `<h1> Hi ${ this.name } ${this.lastName}!</h1>`
-  });
-  
+api.get("/:name/db", (req, res) => {  
+  db.respond(req, res);  
 });
 
 export default db;
