@@ -4,8 +4,8 @@ import { Peach, convert, obj, type } from "../natives/peach.js";
 
 const db = new Peach({
   steps: {
-    dbApi: function(last, next) {
-      next("hello");
+    dbApi: function() {
+      this.next("hello");
     },
     serve: function() {
       const { res } = this;
