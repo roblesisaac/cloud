@@ -4,26 +4,8 @@ import { Peach, convert, obj, type } from "../natives/peach.js";
 
 const db = new Peach({
   steps: {
-    dbApi: function() {
-//       const body = {
-//         collection:"sheets",
-//         database:"uisheet",
-//         dataSource:"peach",
-//         projection: {"_id": 1}
-//       };
-      
-//       const response = await fetch(params.MDE+"find", {
-//       	method: "post",
-//       	body: JSON.stringify(body),
-//       	headers: {
-//       	  "Content-Type": "application/json",
-//       	  "Access-Control-Request-Headers": "*",
-//       	  "api-key": params.MDB
-//       	}
-//       });
-      
-//       const data = await response.json();
-      this.next();
+    dbApi: function(last, next) {
+      next("hi");
     },
     serve: function() {
       const { res } = this;
@@ -34,7 +16,7 @@ const db = new Peach({
   instruct: {
     respond: (req, res) => [
       { req, res },
-      "dbApi",
+      // "dbApi",
       "serve"
     ]
   }
