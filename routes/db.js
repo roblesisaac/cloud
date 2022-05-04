@@ -1,6 +1,6 @@
 import { api, params } from "@serverless/cloud";
 import { Peach, convert, obj, type } from "../natives/peach.js";
-import fetch from "node-fetch";
+// import fetch from "node-fetch";
 
 const db = new Peach({
   steps: {
@@ -25,7 +25,7 @@ const db = new Peach({
 //       const data = await response.json();
       this.next(params.MDE);
     },
-    serve: function(message) {
+    serve: function(last) {
       const { res } = this;
       
       res.send("hi");
