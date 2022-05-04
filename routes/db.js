@@ -4,27 +4,27 @@ import { Peach, convert, obj, type } from "../natives/peach.js";
 
 const db = new Peach({
   steps: {
-    dbApi: function() {
-      const body = {
-        collection:"sheets",
-        database:"uisheet",
-        dataSource:"peach",
-        projection: {"_id": 1}
-      };
+//     dbApi: function() {
+//       const body = {
+//         collection:"sheets",
+//         database:"uisheet",
+//         dataSource:"peach",
+//         projection: {"_id": 1}
+//       };
       
-      const resp = await fetch(params.MDE+"find", {
-      	method: "post",
-      	body: JSON.stringify(body),
-      	headers: {
-      	  "Content-Type": "application/json",
-      	  "Access-Control-Request-Headers": "*",
-      	  "api-key": params.MDB
-      	}
-      });
+//       const resp = await fetch(params.MDE+"find", {
+//       	method: "post",
+//       	body: JSON.stringify(body),
+//       	headers: {
+//       	  "Content-Type": "application/json",
+//       	  "Access-Control-Request-Headers": "*",
+//       	  "api-key": params.MDB
+//       	}
+//       });
       
-      const data = await resp.json();
-      this.next(data);
-    },
+//       const data = await resp.json();
+//       this.next(data);
+//     },
     serve: function(data) {
       const { rez } = this;
       
@@ -35,7 +35,7 @@ const db = new Peach({
     respond: (req, rez) => [
       { rez },
 //       "dbApi",
-      { serve: message }
+      { serve }
     ]
   }
 });
