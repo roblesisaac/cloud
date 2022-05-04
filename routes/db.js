@@ -33,7 +33,7 @@ const db = new Peach({
   },
   instruct: {
     respond: (req, res) => [
-//       { req, res },
+      { req, res },
 //       "dbApi",
       "serve"
     ]
@@ -41,8 +41,7 @@ const db = new Peach({
 });
 
 api.get("/:name/db", (req, res) => {  
-  res.send("hi");
-//   db.respond(req, res);  
+  db.respond(req, res);  
 });
 
 export default db;
