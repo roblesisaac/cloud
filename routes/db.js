@@ -25,16 +25,16 @@ const db = new Peach({
 //       const data = await response.json();
       this.next(params.MDE);
     },
-    serve: function() {
+    serve: function(last) {
       const { res } = this;
       
-      res.send({ message: params.MDE });
+      res.send({ last });
     }
   },
   instruct: {
     respond: (req, res) => [
       { req, res },
-//       "dbApi",
+      "dbApi",
       "serve"
     ]
   }
