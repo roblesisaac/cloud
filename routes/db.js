@@ -26,9 +26,9 @@ const db = new Peach({
       this.next(params.MDE);
     },
     serve: function(last) {
-      const { res } = this;
+//       const { res } = this;
       
-      res.send(last);
+      this.res.send("hola");
     }
   },
   instruct: {
