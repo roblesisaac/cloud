@@ -71,6 +71,24 @@ addMethodTo(Array, "find", function(filter) {
 
 });
 
+var getArgs = function(fn, args) {
+  if(!args || typeof fn != "function") return {};
+
+  var notArgs = /(\/\/.*$)|(\/\*[\s\S]*?\*\/)|(\s*=[^,\)]*(('(?:\\'|[^'\r\n])*')|("(?:\\"|[^"\r\n])*"))|(\s*=[^,\)]*))/mg,
+      argNames = /([^\s,]+)/g,
+      fnStr = fn.toString().replace(notArgs, ""),
+      argStart = fnStr.indexOf("(")+1,
+      argEnd = fnStr.indexOf(")"),
+      argNames = fnStr.slice(argStart, argEnd).match(argNames) || [],
+      result = {};
+        
+  argNames.forEach((argName, i) => {
+    result[argName] = args[i];
+  });
+  
+  return result;
+};
+
 var obj = {
   copy: function(object) {
     if (null === object || typeof object != "object") return object;
@@ -173,4 +191,4 @@ addMethodTo(String, "includesAny", function() {
   return !!matchCount;
 });
 
-export { obj, convert, type };
+export { convert, getArgs, obj, type };
