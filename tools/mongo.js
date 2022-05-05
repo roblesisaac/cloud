@@ -18,10 +18,6 @@ export default new Peach({
           url
         };
           
-        next(body);
-          
-        return;
-        
         const headers = {
           "Content-Type": "application/json",
           "Access-Control-Request-Headers": "*",
