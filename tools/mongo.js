@@ -18,7 +18,7 @@ export default new Peach({
           url
         };
           
-        res.json(body);
+        next(body);
           
         return;
         
