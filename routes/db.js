@@ -32,7 +32,7 @@ const db = new Peach({
         .catch(next);
     },
     serve: function(data) {      
-      res.send({ data });
+      res.send(data);
     }
   },
   instruct: {
