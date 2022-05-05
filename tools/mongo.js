@@ -12,6 +12,10 @@ export default new Peach({
       },
       fetch: function() {
         var { collection, options, next, url } = this; 
+          
+        next(url);
+          
+        return;
         
         const body = {
           collection,
