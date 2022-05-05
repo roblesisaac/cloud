@@ -60,11 +60,11 @@ const handler = new Peach({
   });
 
 const handle = (req, res) => {
-    res.send(req);
+    const { method } = method;
     
-//     handler.get(req, res).catch(error => {
-//         res.json(error);
-//     });
+    handler[method](req, res).catch(error => {
+        res.json(error);
+    });
 }
 
 api.get("/:sheetName/db", handle);
