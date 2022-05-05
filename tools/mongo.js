@@ -40,7 +40,7 @@ export default new Peach({
         const formats = {
             limit: Number,
             skip: Number,
-            test: () => "test
+            test: () => "test"
         };
             
         Object.keys(options).forEach(prop => {
