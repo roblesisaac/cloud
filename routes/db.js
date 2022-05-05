@@ -61,7 +61,7 @@ const handle = (req, res) => {
     
     method = method.toLowerCase();
     
-    handler[method](req, res).catch(res.json);
+    handler[method](req, res).catch(error => res.json(error));
 }
 
 api.get("/:sheetName/db", handle);
