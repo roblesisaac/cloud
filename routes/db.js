@@ -23,7 +23,7 @@ const handler = new Peach({
 
         if(_id) {
             filter = { _id: { $oid: _id } };
-            options = { filter };
+            options = { filter, select };
         }
 
         this._remember({ action, options });
