@@ -190,7 +190,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
 
       var method = peach[methodName] || peach._steps[methodName] || stepPrint,
           theSpecial = specialProp || parentSpecial,
-          updater = theSpecial == "if" ? "_condition" : "_res",
+          updater = theSpecial == "if" ? "_condition" : "_last",
           self = this;
 
       var next = function(res) {
