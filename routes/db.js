@@ -2,22 +2,26 @@ import { api } from "@serverless/cloud";
 import { Peach } from "../natives/peach.js";
 import db from "../tools/mongo.js";
 
-export default api.get("/:sheetName/db", (req, res) => {
-  
-  new Peach({
+const handler = new Peach({
     steps: {
-      fetch: function(last, next) {
+      fetch: function(last, req, next) {
         const collection = req.params.sheetName;
-        const filter = req.query;
+        const filter = req.body || req.query;
         
-        db.get(collection, filter).then(next);
+        db.get(collection, { filter }).then(next);
       },
-      serve: (last) => res.json(last)
+      serve: function(last) {
+        const { res } = this;
+        res.json(last)
+      }
     },
-    instruct: [
-      "fetch",
+    instruct: (req, res) => [
+      { res },
+      { fetch: req },
       "serve"
     ]
   }).run();
-  
+
+export default api.get("/:sheetName/db", (req, res) => {  
+  handler.run(req, res);  
 });
