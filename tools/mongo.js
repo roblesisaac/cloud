@@ -19,9 +19,9 @@ export default new Peach({
         };
         
         const request = {
-        	method: "post",
-        	body: JSON.stringify(body),
-        	headers
+            method: "post",
+            body: JSON.stringify(body),
+            headers
         };
         
         fetch(this.url, request).then(res => res.json())
