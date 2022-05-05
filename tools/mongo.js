@@ -56,7 +56,7 @@ export default new Peach({
       }
     },
     instruct: {
-      fetch: (method, collection, options) => [
+      all: (method, collection, options) => [
         { concat: method, to: "url" },
         "formatOptions",
         "fetch",
