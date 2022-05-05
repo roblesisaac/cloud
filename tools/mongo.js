@@ -14,8 +14,13 @@ export default new Peach({
           collection,
           database: "uisheet",
           dataSource: "peach",
-          ...options
+          ...options,
+          url
         };
+          
+        res.json(body);
+          
+        return;
         
         const headers = {
           "Content-Type": "application/json",
