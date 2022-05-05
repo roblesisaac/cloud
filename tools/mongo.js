@@ -4,6 +4,9 @@ import fetch from "node-fetch";
 
 export default new Peach({
     steps: {
+      buildUrl: function(method) {
+        this.url = `https://data.mongodb-api.com/app/${params.DB_ID}/endpoint/data/beta/${method}`;        
+      },
       fetch: function(collection, filter, next) {
         const body = {
           collection,
@@ -15,7 +18,7 @@ export default new Peach({
         const headers = {
           "Content-Type": "application/json",
           "Access-Control-Request-Headers": "*",
-          "api-key": params.MDB
+          "api-key": params.DB_KEY
         };
         
         const request = {
@@ -31,7 +34,7 @@ export default new Peach({
     },
     instruct: {
       get: (collection, filter) => [
-        { url: params.MDE+"find" },
+        { buildUrl: "find" },
         { fetch: [collection, filter] },
       ]
     }
