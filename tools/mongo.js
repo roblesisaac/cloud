@@ -40,7 +40,17 @@ export default new Peach({
         const formats = {
           limit: Number,
           skip: Number,
-          select: String
+          select: (value) => {
+            if(!value) return;
+              
+            let projection = {};
+              
+            value.split(" ").forEach(selection => {
+               projection[selection] = selection.includes("-") ? 0 : 1; 
+            });
+             
+            return projection;
+          }
         };
             
         Object.keys(options).forEach(prop => {
@@ -49,8 +59,9 @@ export default new Peach({
             var value = options[prop],
                 method = formats[prop],
                 newValue = typeof method == "function" ? method(value) : method;
-                
-            options[prop] = newValue;
+            
+            if(newValue) options[prop] = newValue;
+              
             if(filter) delete filter[prop];
           }
           
