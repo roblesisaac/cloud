@@ -18,10 +18,7 @@ const handler = new Peach({
             skip = filter.skip || 0;
         
         this.action = "find";
-        this.options = { filter, limit };
-          
-        delete filter.limit;
-        delete filter.skip;
+        this.options = { filter, limit, skip };
       },
       buildInsertOptions: function() {
         var { req } = this,
