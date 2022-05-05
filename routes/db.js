@@ -12,7 +12,7 @@ export default api.get("/:sheetName/db", (req, res) => {
         next(collection);
 //         db.get(collection, filter).then(next);
       },
-      serve: (last) => res.send(last)
+      serve: (last) => res.json(last)
     },
     instruct: [
       "serve"
