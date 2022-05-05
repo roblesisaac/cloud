@@ -1,5 +1,5 @@
 import { params } from "@serverless/cloud";
-import { Peach } from "../natives/peach.js";
+import { Peach, obj } from "../natives/peach.js";
 import fetch from "node-fetch";
 
 export default new Peach({
@@ -32,15 +32,38 @@ export default new Peach({
         fetch(url, clientRequest).then(res => res.json())
           .then(next)
           .catch(next);
+      },
+      formatOptions: function() {
+        var { options } = this;
+        
+        const formats = {
+          limit: Number,
+          skip: Number
+        };
+            
+        Object.keys(options).forEach(prop => {
+          
+          if(obj.hasProp(formats, prop)) {
+            var value = options[prop],
+                method = formats[prop],
+                newValue = typeof method == "function" ? method(value) : method;
+                
+            options[prop] = newValue;
+          }
+          
+        });
+          
       }
     },
     instruct: {
       get: (collection, options) => [
         { concat: "find", to: "url" },
+        "formatOptions",
         "fetch",
       ],
       insertOne: (collection, options) => [
         { concat: "insertOne", to: "url" },
+        "formatOptions",
         "fetch"
       ]
     }
