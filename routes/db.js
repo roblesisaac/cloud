@@ -11,20 +11,23 @@ const db = new Peach({
         dataSource:"peach"
       };
       
-      const res = await fetch(params.MDE+"find", {
+      const headers = {
+        "Content-Type": "application/json",
+        "Access-Control-Request-Headers": "*",
+        "api-key": params.MDB
+      };
+      
+      const request = {
       	method: "post",
       	body: JSON.stringify(body),
-      	headers: {
-      	  "Content-Type": "application/json",
-      	  "Access-Control-Request-Headers": "*",
-      	  "api-key": params.MDB
-      	}
-      });
+      	headers
+      };
       
-      const json = await res.json();
+      const url = params.MDE+"find";
       
-      next({ json });
-//       .then(res => res.json()).then(next).catch(next);
+      fetch(url, request).then(res => res.json())
+        .then(next)
+        .catch(next);
     },
     serve: function(data) {
       const { rez } = this;
@@ -41,10 +44,8 @@ const db = new Peach({
   }
 });
 
-api.get("/:name/db", (req, res) => {
+export default api.get("/:name/db", (req, res) => {
   
   db.respond(req, res);
   
 });
-
-export default db;
