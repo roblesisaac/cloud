@@ -39,10 +39,7 @@ export default new Peach({
         
         var formats = {
             limit: Number,
-            skip: Number,
-            select: function(value) {
-                return "hi";
-            }
+            skip: Number
         };
             
         Object.keys(options).forEach(prop => {
