@@ -57,7 +57,7 @@ const handler = new Peach({
   });
 
 const handle = (req, res) => {
-    const { method } = req;
+    let { method } = req;
     
     method = method.toLowerCase();
     
