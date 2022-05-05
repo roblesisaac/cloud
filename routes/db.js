@@ -9,7 +9,7 @@ const handler = new Peach({
             params = req.params,
             collection = params.sheetName;
 
-        this._remember({ params, collection });
+        this._remember({ params, collectiond });
       },
       buildGetOptions: function() {
         var { req } = this,
