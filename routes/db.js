@@ -24,8 +24,6 @@ const handler = new Peach({
 
 api.get("/:sheetName/db", handler.run);
 
-api.post("/:sheetName/db", (req, res) => { 
-    handler.run(req, res);  
-});
+api.post("/:sheetName/db", handler.run);
 
 export default handler;
