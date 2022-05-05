@@ -8,8 +8,7 @@ const handler = new Peach({
         const collection = req.params.sheetName;
         const filter = req.query;
         
-        next({ filter });
-//         db.get(collection, { filter }).then(next);
+        db.get(collection, { filter }).then(next);
       },
       serve: function(last) {
         const { res } = this;
