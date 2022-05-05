@@ -14,10 +14,13 @@ const handler = new Peach({
       buildGetOptions: function() {
         var { req } = this,
             filter = req.query,
+            _id = req.params.id,
             limit = filter.limit || 50,
             skip = filter.skip || 0;
+            
+        if(_id) filter._id = _id;
         
-        this.action = "find";
+        this.action = _id ? "findOne" : "find";
         this.options = { filter, limit, skip };
       },
       buildInsertOptions: function() {
@@ -61,10 +64,13 @@ const handle = (req, res) => {
     
     method = method.toLowerCase();
     
-    handler[method](req, res).catch(error => res.json(error));
-}
+    handler[method](req, res)
+      .catch(error => res.json(error));
+};
 
 api.get("/:sheetName/db", handle);
+
+api.get("/:sheetName/db/:id", handle);
 
 api.post("/:sheetName/db", handle);
 
