@@ -57,15 +57,15 @@ const handler = new Peach({
     }
 });
 
-const init = (req, res, action) => {
+const init = (req, res, buildOptions) => {
     handler.init(buildOptions, req, res)
         .catch(error => res.json(error))
 }
 
-api.get("/:sheetName/db", (req, res) => init("buildGetOptions"));
+api.get("/:sheetName/db", (req, res) => init(req, res, "buildGetOptions"));
 
-api.get("/:sheetName/db/:id", (req, res) => init("buildGetOptions"));
+api.get("/:sheetName/db/:id", (req, res) => init(req, res, "buildGetOptions"));
 
-api.post("/:sheetName/db", (req, res) => init("buildInsertOptions"));
+api.post("/:sheetName/db", (req, res) => init(req, res, "buildInsertOptions"));
 
 export default handler;
