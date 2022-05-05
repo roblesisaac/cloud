@@ -39,20 +39,8 @@ export default new Peach({
         
         const formats = {
             limit: Number,
-            skip: Number,            
-            selection: (value) => {
-                return value;
-//                 if(!value) return;
-
-//                 let projection = {};
-
-//                 value.split(" ").forEach(selection => {
-//                    projection[selection] = selection.includes("-") ? 0 : 1; 
-//                 });
-
-//                 options.projection = projection;
-//                 delete options.select;
-            }
+            skip: Number,
+            test: () => "test
         };
             
         Object.keys(options).forEach(prop => {
