@@ -7,7 +7,7 @@ const handler = new Peach({
       assignNatives: function() {
         var { req } = this,
             params = req.params,
-            collection = params.sheetName;
+            collectiond = params.sheetName;
             
         this._remember({ params, collection });
       },
