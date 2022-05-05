@@ -4,18 +4,18 @@ import db from "../tools/mongo.js";
 
 const handler = new Peach({
     steps: {
-//       buildOptions: function() {
-//         const filter = req.query,
-//               limit = filter.limit || 50;
+      buildOptions: function() {
+        var filter = req.query,
+            limit = filter.limit || 50;
           
-//         this.options = { filter, limit };
+        this.options = { filter, limit };
           
-//         delete filter.limit;
-//       },
+        delete filter.limit;
+      },
       fetch: function(req, next) {
         const collection = req.params.sheetName;
         
-        db.get(collection, { filter: req.query }).then(next);
+        db.get(collection, this.options).then(next);
       },
       serve: function(last) {
         const { res } = this;
@@ -24,7 +24,7 @@ const handler = new Peach({
     },
     instruct: (req, res) => [
       { res },
-//       { buildOptions: req },
+      { buildOptions: req },
       { fetch: req },
       "serve"
     ]
