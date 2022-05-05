@@ -4,7 +4,7 @@ import fetch from "node-fetch";
 
 export default new Peach({
     input: {
-        url: `https://data.mongodb-api.com/app/${params.DB_ID}/endpoint/data/beta/action/hi`
+        url: `https://data.mongodb-api.com/app/${params.DB_ID}/endpoint/data/beta/action`
     },
     steps: {
       fetch: function() {
