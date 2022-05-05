@@ -4,13 +4,12 @@ import db from "../tools/mongo.js";
 
 export default api.get("/:name/db", (req, res) => {
   
-  const db = new Peach({
+  new Peach({
     steps: {
       serve: function(last, next) {
-        next("hi");
-//         db.get("sheets").then(data => {
-//           res.send(data);
-//         });
+        db.get("sheets").then(data => {
+          res.send(data);
+        });
       }
     },
     instruct: {
