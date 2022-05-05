@@ -9,7 +9,7 @@ export default api.get("/:sheetName/db", (req, res) => {
       serve: function(last, next) {
         const collection = req.params.sheetName;
         const filter = req.query;
-        next(filter);
+        next(typeof filter);
 //         db.get(collection, filter).then(data => {
 //           res.send(data);
 //         });
