@@ -43,7 +43,7 @@ export default new Peach({
         "fetch",
       ],
       insertOne: (collection, options) => [
-        { concat: "insertOne", to: "url },
+        { concat: "insertOne", to: "url" },
         "fetch"
       ]
     }
