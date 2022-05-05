@@ -34,7 +34,7 @@ const db = new Peach({
   instruct: {
     respond: (req, rez) => [
       { rez },
-//       "dbApi",
+      "dbApi",
       "serve"
     ]
   }
