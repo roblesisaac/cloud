@@ -21,7 +21,7 @@ const handler = new Peach({
             options = { filter, limit, skip };
           
         if(_id) {
-            filter = { name: _id };
+            filter = { _id };
             options = { filter };
         }
         
