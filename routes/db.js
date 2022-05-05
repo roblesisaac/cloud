@@ -36,7 +36,7 @@ const handler = new Peach({
       fetch: function() {
         var { action, collection, options, next } = this;
           
-        db.handler(action, collection, options).then(next);
+        db.handle(action, collection, options).then(next);
       },
       serve: function(last) {
         const { res } = this;
@@ -60,9 +60,11 @@ const handler = new Peach({
   });
 
 const handle = (req, res) => {
-    handler.get(req, res).catch(error => {
-        res.json(error);
-    });
+    res.send(req);
+    
+//     handler.get(req, res).catch(error => {
+//         res.json(error);
+//     });
 }
 
 api.get("/:sheetName/db", handle);
