@@ -39,8 +39,8 @@ const handler = new Peach({
       },
       fetch: function() {
         var { action, collection, options, next } = this;
-         next({ action, collection, options }); 
-//         db.handle(action, collection, options).then(next);
+          
+        db.handle(action, collection, options).then(next);
       },
       serve: function(last) {
         const { res } = this;
