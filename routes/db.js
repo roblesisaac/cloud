@@ -22,18 +22,22 @@ const handler = new Peach({
         res.json(last);
       }
     },
-    instruct: (req, res) => [
-      { res },
-      { buildOptions: req },
-      { fetch: req },
-      "serve"
-    ]
+    instruct: {
+        get: (req, res) => [
+            { res },
+            { buildOptions: req },
+            { fetch: req },
+            "serve"    
+        ],
+        post: (req, res) => [
+            (res, next) => next("hello"),
+            "serve"
+        ]
+    }
   });
 
-api.get("/:sheetName/db", handler.run);
+api.get("/:sheetName/db", handler.get);
 
-api.post("/:sheetName/db", (req, res) => {
-    res.json("post successful!");
-});
+api.post("/:sheetName/db", handler.post);
 
 export default handler;
