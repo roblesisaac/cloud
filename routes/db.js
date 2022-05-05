@@ -1,45 +1,16 @@
-import { api, params } from "@serverless/cloud";
-import { Peach, convert, obj, type } from "../natives/peach.js";
-import fetch from "node-fetch";
+import { Peach } from "../natives/peach.js";
+import db from "../tools/mongo.js";
 
 export default api.get("/:name/db", (req, res) => {
   
   const db = new Peach({
     steps: {
-      dbApi: function(last, next) {
-        const body = {
-          collection: "sheets",
-          database: "uisheet",
-          dataSource: "peach"
-        };
-        
-        const headers = {
-          "Content-Type": "application/json",
-          "Access-Control-Request-Headers": "*",
-          "api-key": params.MDB
-        };
-        
-        const request = {
-        	method: "post",
-        	body: JSON.stringify(body),
-        	headers
-        };
-        
-        const url = params.MDE+"find";
-        
-        fetch(url, request).then(res => res.json())
-          .then(next)
-          .catch(next);
-      },
-      serve: function(data) {      
-        res.send(data);
+      serve: function(last, next) {
+        db.get("sheets").then(next);
       }
     },
     instruct: {
-      respond: [
-        "dbApi",
-        "serve"
-      ]
+      respond: ["serve"]
     }
   });
     
