@@ -4,16 +4,12 @@ import fetch from "node-fetch";
 
 export default new Peach({
     input: {
-        url: `https://data.mongodb-api.com/app/${params.DB_ID}/endpoint/data/beta/action`
+        url: `https://data.mongodb-api.com/app/${params.DB_ID}/endpoint/data/beta/action/`
     },
     steps: {
       fetch: function() {
         var { collection, options, next, url } = this; 
           
-        next(url);
-          
-        return;
-        
         const body = {
           collection,
           database: "uisheet",
