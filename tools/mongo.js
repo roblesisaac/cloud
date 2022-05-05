@@ -7,12 +7,12 @@ export default new Peach({
       buildUrl: function(method) {
         this.url = `https://data.mongodb-api.com/app/${params.DB_ID}/endpoint/data/beta/action/${method}`;        
       },
-      fetch: function(collection, filter, next) {
+      fetch: function(collection, options, next) {
         const body = {
           collection,
           database: "uisheet",
           dataSource: "peach",
-          filter
+          ...options
         };
         
         const headers = {
@@ -33,9 +33,9 @@ export default new Peach({
       }
     },
     instruct: {
-      get: (collection, filter) => [
+      get: (collection, options) => [
         { buildUrl: "find" },
-        { fetch: [collection, filter] },
+        { fetch: [collection, options] },
       ]
     }
   });
