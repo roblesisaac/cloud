@@ -6,9 +6,9 @@ const handler = new Peach({
     steps: {
       fetch: function(last, req, next) {
         const collection = req.params.sheetName;
-        const filter = req.body || req.query;
+//         const filter = req.body || req.query;
         
-          next({ collection, filter });
+          next({ collection });
 //         db.get(collection, { filter }).then(next);
       },
       serve: function(last) {
