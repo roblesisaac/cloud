@@ -9,7 +9,7 @@ const handler = new Peach({
             params = req.params,
             collection = params.sheetName;
             
-        this._remember({ params, collection });
+        this._remember({ params, collectiond });
       },
       buildGetOptions: function() {
         var { req } = this,
@@ -59,9 +59,9 @@ const handler = new Peach({
 const handle = (req, res) => {
     const { method } = req;
     
-    handler[method.toLowerCase()](req, res).catch(error => {
-        res.json(error);
-    });
+    method = method.toLowerCase();
+    
+    handler[method](req, res).catch(res.json);
 }
 
 api.get("/:sheetName/db", handle);
