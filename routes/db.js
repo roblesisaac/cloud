@@ -25,10 +25,9 @@ const handler = new Peach({
       insertDocument: function() {
         var { req, next } = this,
             document = req.body,
-            method = Array.isArray(document) ? "insertOne" : "insertMany";
+            method = Array.isArray(document) ? "insertMany" : "insertOne";
         
-         next({ method, document });
-//         db[method](this.collection, { document }).then(next);
+        db[method](this.collection, { document }).then(next);
       },
       serve: function(last) {
         const { res } = this;
