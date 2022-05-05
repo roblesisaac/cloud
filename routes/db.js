@@ -4,28 +4,23 @@ import fetch from "node-fetch";
 
 const db = new Peach({
   steps: {
-    dbApi: function() {
+    dbApi: function(last, next) {
       const body = {
         collection:"sheets",
         database:"uisheet",
         dataSource:"peach",
-        url: params.MDE+"find",
         projection: {"_id": 1}
       };
       
-//       const response = await fetch(params.MDE+"find", {
-//       	method: "post",
-//       	body: JSON.stringify(body),
-//       	headers: {
-//       	  "Content-Type": "application/json",
-//       	  "Access-Control-Request-Headers": "*",
-//       	  "api-key": params.MDB
-//       	}
-//       });
-      
-//       const data = await response.json();
-      
-      this.next(body);
+      fetch(params.MDE+"find", {
+      	method: "post",
+      	body: JSON.stringify(body),
+      	headers: {
+      	  "Content-Type": "application/json",
+      	  "Access-Control-Request-Headers": "*",
+      	  "api-key": params.MDB
+      	}
+      }).then(res => res.json()).then(next).catch(next);
     },
     serve: function(data) {
       const { rez } = this;
