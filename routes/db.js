@@ -11,7 +11,7 @@ const db = new Peach({
         dataSource:"peach"
       };
       
-      fetch(params.MDE+"find", {
+      const res = await fetch(params.MDE+"find", {
       	method: "post",
       	body: JSON.stringify(body),
       	headers: {
@@ -19,7 +19,12 @@ const db = new Peach({
       	  "Access-Control-Request-Headers": "*",
       	  "api-key": params.MDB
       	}
-      }).then(res => res.json()).then(next).catch(next);
+      })
+      
+      const json = res.json();
+      
+      next({ json });
+//       .then(res => res.json()).then(next).catch(next);
     },
     serve: function(data) {
       const { rez } = this;
