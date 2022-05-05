@@ -5,7 +5,7 @@ import fetch from "node-fetch";
 export default new Peach({
     steps: {
       buildUrl: function(method) {
-        this.url = `https://data.mongodb-api.com/app/${params.DB_ID}/endpoint/data/beta/${method}`;        
+        this.url = `https://data.mongodb-api.com/app/${params.DB_ID}/endpoint/data/beta/action/${method}`;        
       },
       fetch: function(collection, filter, next) {
         const body = {
