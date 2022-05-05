@@ -14,8 +14,7 @@ export default new Peach({
           collection,
           database: "uisheet",
           dataSource: "peach",
-          ...options,
-          url
+          ...options
         };
           
         const headers = {
