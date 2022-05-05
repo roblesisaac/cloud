@@ -8,14 +8,14 @@ const handler = new Peach({
         const filter = req.query,
               limit = filter.limit || 50;
           
-        this.options = { filter, limit }
+        this.options = { filter, limit };
           
         delete filter.limit;
       };
       fetch: function(req, next) {
         const collection = req.params.sheetName;
         
-        db.get(collection, this.options).then(next);
+        db.get(collection, { filter: req.query }).then(next);
       },
       serve: function(last) {
         const { res } = this;
