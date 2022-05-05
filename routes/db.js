@@ -5,7 +5,6 @@ import db from "../tools/mongo.js";
 const handler = new Peach({
     steps: {
       buildOptions: function(req) {
-        // test
         var filter = req.query,
             limit = filter.limit || 50;
           
@@ -31,6 +30,10 @@ const handler = new Peach({
     ]
   });
 
-api.all("/:sheetName/db", handler.run);
+api.get("/:sheetName/db", handler.run);
+
+api.post("/:sheetName/db", (req, res) => {
+    res.json("post successful!");
+});
 
 export default handler;
