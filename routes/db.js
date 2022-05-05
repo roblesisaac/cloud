@@ -62,7 +62,7 @@ const handler = new Peach({
 const handle = (req, res) => {
     const { method } = req;
     
-    handler[method](req, res).catch(error => {
+    handler[method.toLowerCase()](req, res).catch(error => {
         res.json(error);
     });
 }
