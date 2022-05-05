@@ -56,6 +56,11 @@ export default new Peach({
       }
     },
     instruct: {
+      fetch: (method, collection, options) => [
+        { concat: method, to: "url" },
+        "formatOptions",
+        "fetch",
+      ], 
       find: (collection, options) => [
         { concat: "find", to: "url" },
         "formatOptions",
