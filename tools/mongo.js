@@ -1,6 +1,6 @@
 import fetch from "node-fetch";
 
-expor default new Peach({
+export default new Peach({
     steps: {
       fetch: function(collection, next) {
         const body = {
