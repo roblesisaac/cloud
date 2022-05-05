@@ -1,6 +1,6 @@
 import { api } from "@serverless/cloud";
 import { Peach } from "../natives/peach.js";
-// import db from "../tools/mongo.js";
+import db from "../tools/mongo.js";
 
 export default api.get("/:sheetName/db", (req, res) => {
   
@@ -8,14 +8,15 @@ export default api.get("/:sheetName/db", (req, res) => {
     steps: {
       serve: function(last, next) {
         const collection = req.params.sheetName;
-//         const filter = req.query;
-        next(typeof collection);
-//         db.get(collection, filter).then(data => {
-//           res.send(data);
-//         });
-      }
+        const filter = req.query;
+        next(collection);
+//         db.get(collection, filter).then(next);
+      },
+      serve: (last) => res.send(last)
     },
-    instruct: ["serve"]
+    instruct: [
+      "serve"
+    ]
   }).run();
   
 });
