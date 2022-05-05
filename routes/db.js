@@ -36,7 +36,7 @@ const handler = new Peach({
       fetch: function() {
         var { action, collection, options, next } = this;
           
-        db.all(action, collection, options).then(next);
+        db.handler(action, collection, options).then(next);
       },
       serve: function(last) {
         const { res } = this;
@@ -59,8 +59,14 @@ const handler = new Peach({
     }
   });
 
-api.get("/:sheetName/db", handler.get);
+const handle = (req, res) => {
+    handler.get(req, res).catch(error => {
+        res.json(error);
+    });
+}
 
-api.post("/:sheetName/db", handler.post);
+api.get("/:sheetName/db", handle);
+
+api.post("/:sheetName/db", handle);
 
 export default handler;
