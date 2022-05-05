@@ -19,7 +19,7 @@ const db = new Peach({
       	  "Access-Control-Request-Headers": "*",
       	  "api-key": params.MDB
       	}
-      })
+      });
       
       const json = await res.json();
       
