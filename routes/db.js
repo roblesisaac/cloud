@@ -20,7 +20,7 @@ const handler = new Peach({
         delete filter.limit;
       },
       fetch: function(req, next) {
-        db.get(this.collection, this.options).then(next);
+        db.find(this.collection, this.options).then(next);
       },
       insertDocument: function() {
         var { req, next } = this,
