@@ -7,16 +7,15 @@ export default api.get("/:name/db", (req, res) => {
   const db = new Peach({
     steps: {
       serve: function(last, next) {
-        db.get("sheets").then(data => {
-          res.send(data);
-        });
+        next("hi");
+//         db.get("sheets").then(data => {
+//           res.send(data);
+//         });
       }
     },
     instruct: {
-      respond: ["serve"]
+      respond: "serve"
     }
-  });
-    
-  db.respond();
+  }).respond();
   
 });
