@@ -15,7 +15,7 @@ const handler = new Peach({
       fetch: function(req, next) {
         const collection = req.params.sheetName;
         
-        db.get(collection, this.options).then(next);
+        db.get(collection, { filter: req.query }).then(next);
       },
       serve: function(last) {
         const { res } = this;
@@ -24,7 +24,7 @@ const handler = new Peach({
     },
     instruct: (req, res) => [
       { res },
-      { buildOptions: req },
+//       { buildOptions: req },
       { fetch: req },
       "serve"
     ]
