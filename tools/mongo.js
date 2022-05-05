@@ -34,7 +34,8 @@ export default new Peach({
           .catch(next);
       },
       formatOptions: function() {
-        var { options } = this;
+        var { options } = this,
+            { filter } = options;
         
         const formats = {
           limit: Number,
@@ -49,6 +50,7 @@ export default new Peach({
                 newValue = typeof method == "function" ? method(value) : method;
                 
             options[prop] = newValue;
+            if(filter) delete filter[prop];
           }
           
         });
@@ -59,7 +61,7 @@ export default new Peach({
       handle: (method, collection, options) => [
         { concat: method, to: "url" },
         "formatOptions",
-        "fetch",
+        "fetch"
       ]
     }
   });
