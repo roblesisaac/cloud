@@ -18,7 +18,7 @@ const handler = new Peach({
             limit = filter.limit || 50,
             skip = filter.skip || 0;
           
-        if(_id) filter = { _id: { $oid: _id } };
+        if(_id) filter = { name: _id };
         
         this.action = _id ? "findOne" : "find";
         this.options = { filter, limit, skip };
@@ -35,8 +35,8 @@ const handler = new Peach({
       },
       fetch: function() {
         var { action, collection, options, next } = this;
-         next({action, collection, options}); 
-//         db.handle(action, collection, options).then(next);
+          
+        db.handle(action, collection, options).then(next);
       },
       serve: function(last) {
         const { res } = this;
