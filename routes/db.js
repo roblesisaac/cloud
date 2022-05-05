@@ -54,6 +54,12 @@ const handler = new Peach({
             "fetch",
             "serve"    
         ],
+        init: (buildOptions, req, res) => [
+            "assignNatives",
+            buildOptions,
+            "fetch",
+            "serve"    
+        ],
         post: (req, res) => [
             "assignNatives",
             "buildInsertOptions",
@@ -63,19 +69,10 @@ const handler = new Peach({
     }
   });
 
-const handle = (req, res) => {
-    let { method } = req;
-    
-    method = method.toLowerCase();
-    
-    handler[method](req, res)
-      .catch(error => res.json(error));
-};
+api.get("/:sheetName/db", (req, res) => handler.init("buildGetOptions", req, res));
 
-api.get("/:sheetName/db", handle);
+api.get("/:sheetName/db/:id", (req, res) => handler.init("buildGetOptions", req, res));
 
-api.get("/:sheetName/db/:id", handle);
-
-api.post("/:sheetName/db", handle);
+api.post("/:sheetName/db", (req, res) => handler.init("buildInsertOptions", req, res));
 
 export default handler;
