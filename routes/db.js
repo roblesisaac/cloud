@@ -11,28 +11,34 @@ const handler = new Peach({
             
         this._remember({ params, collection });
       },
-      buildOptions: function(req) {
-        var filter = req.query,
-            limit = filter.limit || 50;
-          
+      buildGetOptions: function() {
+        var { req } = this,
+            filter = req.query,
+            limit = filter.limit || 50,
+            skip = filter.skip || 0;
+        
+        this.action = "find";
         this.options = { filter, limit };
           
         delete filter.limit;
+        delete filter.skip;
       },
-      fetch: function(req, next) {
-        db.find(this.collection, this.options).then(next);
-      },
-      insertDocument: function() {
+      buildInsertOptions: function(req) {
         var { req, next } = this,
             document = req.body,
-            method = Array.isArray(document) ? "insertMany" : "insertOne",
+            action = Array.isArray(document) ? "insertMany" : "insertOne",
             options = method == "insertMany" 
                 ? { documents: document } 
                 : document;
-        
-        db[method](this.collection, options).then(next);
+          
+        this._remember({ action, options });
       },
-      serve: function(last) {
+      fetch: function() {
+        var { action, collection, options, next } = this;
+          
+        db.fetch(action, collection, options).then(next);
+      },
+      serve: function() {
         const { res } = this;
         res.json(last);
       }
@@ -40,13 +46,14 @@ const handler = new Peach({
     instruct: {
         get: (req, res) => [
             "assignNatives",
-            { buildOptions: req },
-            { fetch: req },
+            "buildGetOptions",
+            "fetch",
             "serve"    
         ],
         post: (req, res) => [
             "assignNatives",
-            "insertDocument",
+            "buildInsertOptions",
+            "fetch",
             "serve"
         ]
     }
