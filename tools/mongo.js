@@ -1,4 +1,4 @@
-import { params } form "@serverless-cloud";
+import { params } from "@serverless/cloud";
 import { Peach } from "../natives/peach.js";
 import fetch from "node-fetch";
 
