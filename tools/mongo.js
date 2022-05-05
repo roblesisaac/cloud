@@ -4,7 +4,7 @@ import fetch from "node-fetch";
 
 export default new Peach({
     steps: {
-      fetch: function(collection, next) {
+      fetch: function(collection, filter, next) {
         const body = {
           collection,
           database: "uisheet",
@@ -32,10 +32,7 @@ export default new Peach({
     instruct: {
       get: (collection, filter) => [
         { url: params.MDE+"find" },
-        { 
-            fetch: collection,
-            filter
-        },
+        { fetch: [collection, filter] },
       ]
     }
   });
