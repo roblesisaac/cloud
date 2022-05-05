@@ -8,7 +8,8 @@ export default new Peach({
         const body = {
           collection,
           database: "uisheet",
-          dataSource: "peach"
+          dataSource: "peach",
+          filter
         };
         
         const headers = {
@@ -20,8 +21,7 @@ export default new Peach({
         const request = {
         	method: "post",
         	body: JSON.stringify(body),
-        	headers,
-            filter
+        	headers
         };
         
         fetch(this.url, request).then(res => res.json())
