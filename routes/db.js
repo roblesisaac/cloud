@@ -17,12 +17,11 @@ const handler = new Peach({
     },
     instruct: (req, res) => [
       { res },
-//       { fetch: req },
+      { fetch: req },
       "serve"
     ]
-  }).run();
+  })
 
 export default api.get("/:sheetName/db", (req, res) => {  
-    res.send("hi");
-//   handler.run(req, res);  
+    handler.run(req, res);  
 });
