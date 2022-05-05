@@ -20,7 +20,7 @@ export default new Peach({
         const headers = {
           "Content-Type": "application/json",
           "Access-Control-Request-Headers": "*",
-          "api-key": params.DB_KEY
+          "api-key": params.DB_TOKEN
         };
         
         const clientRequest = {
