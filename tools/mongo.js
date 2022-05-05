@@ -39,7 +39,7 @@ export default new Peach({
         
         const formats = {
           limit: Number,
-          skip: Number,
+          skip: Number
 //           select: (value) => {
 //             if(!value) return;
               
@@ -61,7 +61,7 @@ export default new Peach({
                 method = formats[prop],
                 newValue = typeof method == "function" ? method(value) : method;
             
-            if(newValue) options[prop] = newValue;
+            options[prop] = newValue;
               
             if(filter) delete filter[prop];
           }
