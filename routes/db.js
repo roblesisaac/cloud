@@ -15,13 +15,17 @@ const handler = new Peach({
         var { req } = this,
             filter = req.query,
             _id = req.params.id,
+            action = _id ? "findOne" : "find",
             limit = filter.limit || 50,
-            skip = filter.skip || 0;
+            skip = filter.skip || 0,
+            options = { filter, limit, skip };
           
-        if(_id) filter = { name: _id };
+        if(_id) {
+            filter = { name: _id };
+            options = { filter };
+        }
         
-        this.action = _id ? "findOne" : "find";
-        this.options = { filter, limit, skip };
+        this._remember({ action, options });
       },
       buildInsertOptions: function() {
         var { req } = this,
