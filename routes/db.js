@@ -9,10 +9,10 @@ export default api.get("/:sheetName/db", (req, res) => {
       serve: function(last, next) {
         const collection = req.params.sheetName;
         const filter = req.query;
-        
-        db.get(collection, filter).then(data => {
-          res.send(data);
-        });
+        next(filter);
+//         db.get(collection, filter).then(data => {
+//           res.send(data);
+//         });
       }
     },
     instruct: ["serve"]
