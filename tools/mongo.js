@@ -49,7 +49,8 @@ export default new Peach({
                projection[selection] = selection.includes("-") ? 0 : 1; 
             });
              
-            return projection;
+            options.projection = projection;
+            delete options.select;
           }
         };
             
