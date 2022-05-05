@@ -22,17 +22,15 @@ export default new Peach({
         	body: JSON.stringify(body),
         	headers
         };
-          
-          next(this.url);
         
-//         fetch(this.url, request).then(res => res.json())
-//           .then(next)
-//           .catch(next);
+        fetch(this.url, request).then(res => res.json())
+          .then(next)
+          .catch(next);
       }
     },
     instruct: {
       get: (collection) => [
-        { url: params.MDB+"find" },
+        { url: params.MDE+"find" },
         { fetch: collection },
       ]
     }
