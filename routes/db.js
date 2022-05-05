@@ -45,7 +45,7 @@ const handler = new Peach({
       serve: function(last) {
         const { res } = this;
         
-        const data = last.document || last.documents;
+        const data = Object.keys(data).length ? last.document || last.documents || last : last;
           
         res.json(data);
       }
