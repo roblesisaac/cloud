@@ -23,5 +23,6 @@ const handler = new Peach({
   }).run();
 
 export default api.get("/:sheetName/db", (req, res) => {  
-  handler.run(req, res);  
+    res.send("hi");
+//   handler.run(req, res);  
 });
