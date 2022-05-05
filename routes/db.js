@@ -24,7 +24,6 @@ const handler = new Peach({
     },
     instruct: {
         get: (req, res) => [
-            { res },
             { buildOptions: req },
             { fetch: req },
             "serve"    
@@ -36,7 +35,7 @@ const handler = new Peach({
     }
   });
 
-api.get("/:sheetName/db", handler.get);
+api.get("/:sheetName/db", (req, res) => res.json("hi"));
 
 api.post("/:sheetName/db", handler.post);
 
