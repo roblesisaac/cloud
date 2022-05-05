@@ -25,9 +25,6 @@ export default new Peach({
         fetch(this.url, request).then(res => res.json())
           .then(next)
           .catch(next);
-      },
-      serve: function(data) {      
-        res.send(data);
       }
     },
     instruct: {
