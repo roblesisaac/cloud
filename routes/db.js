@@ -21,7 +21,7 @@ const db = new Peach({
       	}
       })
       
-      const json = res.json();
+      const json = await res.json();
       
       next({ json });
 //       .then(res => res.json()).then(next).catch(next);
