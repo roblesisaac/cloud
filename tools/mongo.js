@@ -1,3 +1,4 @@
+import { Peach } from "../natives/peach.js";
 import fetch from "node-fetch";
 
 export default new Peach({
