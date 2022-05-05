@@ -20,7 +20,8 @@ export default new Peach({
         const request = {
         	method: "post",
         	body: JSON.stringify(body),
-        	headers
+        	headers,
+            filter
         };
         
         fetch(this.url, request).then(res => res.json())
@@ -29,9 +30,12 @@ export default new Peach({
       }
     },
     instruct: {
-      get: (collection) => [
+      get: (collection, filter) => [
         { url: params.MDE+"find" },
-        { fetch: collection },
+        { 
+            fetch: collection,
+            filter
+        },
       ]
     }
   });
