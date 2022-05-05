@@ -56,13 +56,18 @@ export default new Peach({
       }
     },
     instruct: {
-      get: (collection, options) => [
+      find: (collection, options) => [
         { concat: "find", to: "url" },
         "formatOptions",
         "fetch",
       ],
       insertOne: (collection, options) => [
         { concat: "insertOne", to: "url" },
+        "formatOptions",
+        "fetch"
+      ],
+      insertMany: (collection, options) => [
+        { concat: "insertMany", to: "url" },
         "formatOptions",
         "fetch"
       ]
