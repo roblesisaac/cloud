@@ -8,8 +8,7 @@ const db = new Peach({
       const body = {
         collection:"sheets",
         database:"uisheet",
-        dataSource:"peach",
-        projection: {"_id": 1}
+        dataSource:"peach"
       };
       
       fetch(params.MDE+"find", {
