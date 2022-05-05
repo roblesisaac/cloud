@@ -8,7 +8,7 @@ const handler = new Peach({
         var { req } = this,
             params = req.params,
             collection = params.sheetName;
-            
+
         this._remember({ params, collection });
       },
       buildGetOptions: function() {
@@ -19,12 +19,12 @@ const handler = new Peach({
             limit = filter.limit || 50,
             skip = filter.skip || 0,
             options = { filter, limit, skip };
-          
+
         if(_id) {
             filter = { _id: { $oid: _id } };
             options = { filter };
         }
-        
+
         this._remember({ action, options });
       },
       buildInsertOptions: function() {
@@ -34,12 +34,12 @@ const handler = new Peach({
             options = action == "insertMany" 
                 ? { documents: document } 
                 : document;
-          
+
         this._remember({ action, options });
       },
       fetch: function() {
         var { action, collection, options, next } = this;
-          
+
         db.handle(action, collection, options).then(next);
       },
       serve: function(last) {
@@ -48,31 +48,24 @@ const handler = new Peach({
       }
     },
     instruct: {
-        get: (req, res) => [
-            "assignNatives",
-            "buildGetOptions",
-            "fetch",
-            "serve"    
-        ],
         init: (buildOptions, req, res) => [
             "assignNatives",
             buildOptions,
             "fetch",
             "serve"    
-        ],
-        post: (req, res) => [
-            "assignNatives",
-            "buildInsertOptions",
-            "fetch",
-            "serve"
         ]
     }
-  });
+});
 
-api.get("/:sheetName/db", (req, res) => handler.init("buildGetOptions", req, res));
+const init = (req, res, action) => {
+    handler.init(buildOptions, req, res)
+        .catch(error => res.json(error))
+}
 
-api.get("/:sheetName/db/:id", (req, res) => handler.init("buildGetOptions", req, res));
+api.get("/:sheetName/db", (req, res) => init("buildGetOptions"));
 
-api.post("/:sheetName/db", (req, res) => handler.init("buildInsertOptions", req, res));
+api.get("/:sheetName/db/:id", (req, res) => init("buildGetOptions"));
+
+api.post("/:sheetName/db", (req, res) => init("buildInsertOptions"));
 
 export default handler;
