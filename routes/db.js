@@ -11,11 +11,11 @@ const handler = new Peach({
         this.options = { filter, limit };
           
         delete filter.limit;
-      };
+      },
       fetch: function(req, next) {
         const collection = req.params.sheetName;
         
-        db.get(collection, { filter: req.query }).then(next);
+        db.get(collection, this.options).then(next);
       },
       serve: function(last) {
         const { res } = this;
