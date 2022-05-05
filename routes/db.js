@@ -19,7 +19,7 @@ const handler = new Peach({
       },
       serve: function(last) {
         const { res } = this;
-        res.json(this.options);
+        res.json(last);
       }
     },
     instruct: (req, res) => [
