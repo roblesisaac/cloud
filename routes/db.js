@@ -40,7 +40,7 @@ const handler = new Peach({
           
 //         db.fetch(action, collection, options).then(next);
       },
-      serve: function() {
+      serve: function(last) {
         const { res } = this;
         res.json(last);
       }
