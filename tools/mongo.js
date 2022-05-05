@@ -41,16 +41,17 @@ export default new Peach({
             limit: Number,
             skip: Number,            
             selection: (value) => {
-                if(!value) return;
+                return value;
+//                 if(!value) return;
 
-                let projection = {};
+//                 let projection = {};
 
-                value.split(" ").forEach(selection => {
-                   projection[selection] = selection.includes("-") ? 0 : 1; 
-                });
+//                 value.split(" ").forEach(selection => {
+//                    projection[selection] = selection.includes("-") ? 0 : 1; 
+//                 });
 
-                options.projection = projection;
-                delete options.select;
+//                 options.projection = projection;
+//                 delete options.select;
             }
         };
             
