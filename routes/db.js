@@ -18,7 +18,8 @@ const handler = new Peach({
             action = _id ? "findOne" : "find",
             limit = filter.limit || 50,
             skip = filter.skip || 0,
-            options = { filter, limit, skip };
+            select = filter.select,
+            options = { filter, limit, skip, select };
 
         if(_id) {
             filter = { _id: { $oid: _id } };
