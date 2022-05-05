@@ -4,6 +4,13 @@ import db from "../tools/mongo.js";
 
 const handler = new Peach({
     steps: {
+      assignNatives: function() {
+        var { req } = this,
+            params = req.params,
+            collection = params.sheetName;
+            
+        this._remember({ params, collection });
+      },
       buildOptions: function(req) {
         var filter = req.query,
             limit = filter.limit || 50;
@@ -13,9 +20,14 @@ const handler = new Peach({
         delete filter.limit;
       },
       fetch: function(req, next) {
-        const collection = req.params.sheetName;
+        db.get(this.collection, this.options).then(next);
+      },
+      insertDocument: function(last, next) {
+        var { req } = this,
+            data = req.body,
+            method = Array.isArray(data) ? "insertOne" : "insertMany";
         
-        db.get(collection, this.options).then(next);
+        db[method](this.collection, data).then(next);
       },
       serve: function(last) {
         const { res } = this;
@@ -24,12 +36,14 @@ const handler = new Peach({
     },
     instruct: {
         get: (req, res) => [
+            "assignNatives",
             { buildOptions: req },
             { fetch: req },
             "serve"    
         ],
         post: (req, res) => [
-            (res, next) => next("hello"),
+            "assignNatives",
+            "insertDocument",
             "serve"
         ]
     }
