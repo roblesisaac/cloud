@@ -4,7 +4,7 @@ import db from "../tools/mongo.js";
 
 const handler = new Peach({
     steps: {
-      fetch: function(last, req, next) {
+      fetch: function(req, next) {
         const collection = req.params.sheetName;
 //         const filter = req.body || req.query;
         
