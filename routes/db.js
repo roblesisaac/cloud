@@ -42,12 +42,16 @@ const handler = new Peach({
 
         db.handle(action, collection, options).then(next);
       },
-      serve: function(last) {
-        const { res } = this;
+      sanitizeResponse: function(last, next) {
+        const data = Object.keys(last).length 
+                        ? last.document || last.documents || last 
+                        : last;
         
-        const data = Object.keys(last).length ? last.document || last.documents || last : last;
-          
-        res.json(data);
+        next(data);
+      },
+      serve: function(last) {
+        const { res } = this;         
+        res.json(last);
       }
     },
     instruct: {
@@ -55,6 +59,7 @@ const handler = new Peach({
             "assignNatives",
             buildOptions,
             "fetch",
+            "sanitizeResponse",
             "serve"    
         ]
     }
