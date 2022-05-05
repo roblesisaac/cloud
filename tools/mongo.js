@@ -37,7 +37,7 @@ export default new Peach({
         var { options } = this,
             { filter } = options;
         
-        const formats = {
+        var formats = {
             limit: Number,
             skip: Number,
             select: function(value) {
