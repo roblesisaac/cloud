@@ -12,23 +12,24 @@ const db = new Peach({
         projection: {"_id": 1}
       };
       
-      const resp = await fetch(params.MDE+"find", {
-      	method: "post",
-      	body: JSON.stringify(body),
-      	headers: {
-      	  "Content-Type": "application/json",
-      	  "Access-Control-Request-Headers": "*",
-      	  "api-key": params.MDB
-      	}
-      });
+//       const response = await fetch(params.MDE+"find", {
+//       	method: "post",
+//       	body: JSON.stringify(body),
+//       	headers: {
+//       	  "Content-Type": "application/json",
+//       	  "Access-Control-Request-Headers": "*",
+//       	  "api-key": params.MDB
+//       	}
+//       });
       
-      const data = await resp.json();
-      this.next(data);
+//       const data = await response.json();
+      
+      this.next(body);
     },
     serve: function(data) {
       const { rez } = this;
       
-      rez.send(typeof data);
+      rez.send(data);
     }
   },
   instruct: {
