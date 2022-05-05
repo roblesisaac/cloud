@@ -22,7 +22,7 @@ const handler = new Peach({
     ]
   });
 
-api.get("/:sheetName/db", handler.run);
+// api.get("/:sheetName/db", handler.run);
 
 api.post("/:sheetName/db", handler.run);
 
