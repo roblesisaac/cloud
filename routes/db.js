@@ -44,7 +44,10 @@ const handler = new Peach({
       },
       serve: function(last) {
         const { res } = this;
-        res.json(last);
+        
+        const data = last.document || last.documents;
+          
+        res.json(data);
       }
     },
     instruct: {
