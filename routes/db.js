@@ -23,11 +23,11 @@ const handler = new Peach({
         delete filter.limit;
         delete filter.skip;
       },
-      buildInsertOptions: function(req) {
-        var { req, next } = this,
+      buildInsertOptions: function() {
+        var { req } = this,
             document = req.body,
             action = Array.isArray(document) ? "insertMany" : "insertOne",
-            options = method == "insertMany" 
+            options = action == "insertMany" 
                 ? { documents: document } 
                 : document;
           
