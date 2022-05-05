@@ -3,11 +3,16 @@ import { Peach } from "../natives/peach.js";
 import fetch from "node-fetch";
 
 export default new Peach({
+    input: {
+        url: `https://data.mongodb-api.com/app/${params.DB_ID}/endpoint/data/beta/action/`
+    },
     steps: {
       buildUrl: function(method) {
         this.url = `https://data.mongodb-api.com/app/${params.DB_ID}/endpoint/data/beta/action/${method}`;        
       },
-      fetch: function(collection, options, next) {
+      fetch: function() {
+        var { collection, options, next, url } = this; 
+        
         const body = {
           collection,
           database: "uisheet",
@@ -21,21 +26,25 @@ export default new Peach({
           "api-key": params.DB_KEY
         };
         
-        const request = {
+        const clientRequest = {
             method: "post",
             body: JSON.stringify(body),
             headers
         };
         
-        fetch(this.url, request).then(res => res.json())
+        fetch(url, clientRequest).then(res => res.json())
           .then(next)
           .catch(next);
       }
     },
     instruct: {
       get: (collection, options) => [
-        { buildUrl: "find" },
-        { fetch: [collection, options] },
+        { concat: "find", to: "url" },
+        "fetch",
+      ],
+      insertOne: (collection, options) => [
+        { concat: "insertOne", to: "url },
+        "fetch"
       ]
     }
   });
