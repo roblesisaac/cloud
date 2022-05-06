@@ -37,6 +37,10 @@ export default new Peach({
         var { options } = this,
             { filter } = options;
           
+        var hereIsATest = function() {
+            return "a teest in motion";
+        };
+          
         var formats = {
             limit: Number,
             skip: Number
