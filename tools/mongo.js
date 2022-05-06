@@ -36,11 +36,15 @@ export default new Peach({
       formatOptions: function() {
         var { options } = this,
             { filter } = options;
+          
+        const tester = () => {
+            return "tester";
+        }
         
         var formats = {
             limit: Number,
             skip: Number,
-            select: String
+            select: tester
         };
             
         Object.keys(options).forEach(prop => {
