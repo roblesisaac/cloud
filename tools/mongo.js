@@ -34,16 +34,27 @@ export default new Peach({
           .catch(next);
       },
       formatOptions: function() {
-        var { options } = this,
-            { filter } = options;
+            var { options, next } = this,
+                { filter } = options;
           
-        var hereIsATest = function() {
-            return "a teest in motion";
-        };
-          
-        var formats = {
-            limit: Number,
-            skip: Number
+            var formats = {
+                limit: Number,
+                skip: Number,
+                select: (value) => {
+                    if(!value) return;
+
+                    let projection = {};
+
+                    value.split(" ").forEach(selection => {
+                       projection[selection] = selection.includes("-") ? 0 : 1; 
+                    });
+
+                    options.projection = projection;
+                    delete options.select;
+                }
+            };
+            
+            next();
         };
             
         Object.keys(options).forEach(prop => {
@@ -53,7 +64,7 @@ export default new Peach({
                 method = formats[prop],
                 newValue = typeof method == "function" ? method(value) : method;
                 
-            options[prop] = newValue;
+            if(newValue) options[prop] = newValue;
             if(filter) delete filter[prop];
           }
           
