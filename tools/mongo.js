@@ -77,15 +77,15 @@ export default new Peach({
       },
       needsFormat: function() {
         var valids = ["findOne", "find"],
-            { method, next } = this;
+            { action, next } = this;
             
-        next(valids.includes(method)); 
+        next(valids.includes(action)); 
       }
     },
     instruct: {
-      handle: (method, collection, options, user) => [
+      handle: (action, collection, options, user) => [
         authenticate.user,
-        { concat: method, to: "url" },
+        { concat: action, to: "url" },
         { if: "needsFormat", true: "formatOptions" },
         "fetch"
       ]
