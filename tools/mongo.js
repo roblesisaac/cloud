@@ -1,5 +1,6 @@
 import { params } from "@serverless/cloud";
 import { Peach, obj } from "../natives/peach.js";
+import authenticate from "./authenticate.js";
 import fetch from "node-fetch";
 
 export default new Peach({
@@ -82,11 +83,8 @@ export default new Peach({
       }
     },
     instruct: {
-      getPermit: (user) => [
-        { log: "user" }
-      ],
       handle: (method, collection, options, user) => [
-        "getPermit",
+        authenticate.user,
         { concat: method, to: "url" },
         { if: "needsFormat", true: "formatOptions" },
         "fetch"
