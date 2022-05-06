@@ -13,7 +13,7 @@ const globalSteps = {
     alert(message || messageProp);
   },
   concat: function(dataProp) {
-    var data = obj.deep(this, dataProp) || dataProp,
+    var data = obj.deep(this, dataProp),
         to = obj.tip(this, this.to),
         { item, prop } = to;
     
