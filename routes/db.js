@@ -114,7 +114,7 @@ const handler = new Peach({
 
 const init = (req, res, buildOptions) => {
     handler.init(buildOptions, req, res)
-        .catch(error => res.json(error))
+        .catch(error => res.json(error));
 }
 
 api.get("/:sheetName/db", (req, res) => init(req, res, "buildGetOptions"));
