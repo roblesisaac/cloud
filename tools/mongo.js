@@ -59,14 +59,16 @@ export default new Peach({
             
         Object.keys(options).forEach(prop => {
           
-          if(obj.hasProp(formats, prop)) {
-            var value = options[prop],
-                method = formats[prop],
-                newValue = typeof method == "function" ? method(value) : method;
-            
-            if(newValue) options[prop] = newValue;
-            if(filter) delete filter[prop];
+          if(!obj.hasProp(formats, prop)) {
+            return;
           }
+
+          var value = options[prop],
+              method = formats[prop],
+              newValue = typeof method == "function" ? method(value) : method;
+
+          if(newValue) options[prop] = newValue;
+          if(filter) delete filter[prop];
           
         });
         
