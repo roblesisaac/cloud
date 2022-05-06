@@ -7,6 +7,7 @@ function Peach(blueprint) {
 
   var natives = {
     _blueprint: obj.copy(blueprint),
+    _catch: blueprint.catch ? obj.copy(blueprint.catch) : null,
     _steps: Object.assign({}, this._library.steps, blueprint.steps)
   };
 
@@ -169,7 +170,9 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
     },
     handleError: function(memory, error) {
       var { _rej, _peachName } = memory,
-        errMessage = {
+          { _catch } = peach;   
+      
+      var errMessage = {
         error,
         methodName,
         peachName,
@@ -178,8 +181,12 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         stepPrint
       };
       
-      if (_rej && typeof _rej == "function") {
-        _rej(errMessage);
+      var builtIn = _catch ? _catch[_peachName] || _catch : null;
+      
+      const handler =  builtIn || _rej;
+      
+      if (handler && typeof handler == "function") {
+        handler(errMessage);
         return;
       }
 
