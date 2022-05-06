@@ -56,9 +56,8 @@ export default new Peach({
                 delete options.select;
             }
         };
-            
-        Object.keys(options).forEach(prop => {
           
+        const assignFormat = (prop) => {
           if(!obj.hasProp(formats, prop)) {
             return;
           }
@@ -69,8 +68,9 @@ export default new Peach({
 
           if(newValue) options[prop] = newValue;
           if(filter) delete filter[prop];
-          
-        });
+        };
+            
+        Object.keys(options).forEach(assignFormat);
         
         next();
       },
