@@ -18,12 +18,12 @@ const handler = new Peach({
             action = _id ? "findOne" : "find",
             limit = filter.limit || 50,
             skip = filter.skip || 0,
-//             select = filter.select,
+            select = filter.select,
             options = { filter, limit, skip };
 
         if(_id) {
             filter = { _id: { $oid: _id } };
-            options = { filter };
+            options = { filter, select };
         }
 
         this._remember({ action, options });
