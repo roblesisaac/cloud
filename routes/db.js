@@ -80,7 +80,7 @@ const handler = new Peach({
       fetch: function() {
         var { action, collection, options, next } = this;
 
-        db.handle(action, collection, options).then(next);
+        db.handle(action, collection, options, { username: "isaac" }).then(next);
       },
       sanitizeResponse: function(last, next) {
         const data = Object.keys(last).length 
