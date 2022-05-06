@@ -19,7 +19,7 @@ const handler = new Peach({
             limit = filter.limit || 50,
             skip = filter.skip || 0,
             select = filter.select,
-            options = { filter, limit, skip };
+            options = { filter, limit, skip, select };
 
         if(_id) {
             filter = { _id: { $oid: _id } };
