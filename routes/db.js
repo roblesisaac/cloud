@@ -109,13 +109,12 @@ const handler = new Peach({
     },
     catch: function (error) {
         var { res } = this;
-        res.send("there was an error");
+        res.json(error);
     }
 });
 
 const port = (req, res, nameOfBuild) => {
-    handler.init(nameOfBuild, req, res)
-        .catch(error => res.json(error));
+    handler.init(nameOfBuild, req, res);
 };
 
 api.get("/:sheetName/db", (req, res) => port(req, res, "buildGetOptions"));
