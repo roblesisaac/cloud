@@ -82,7 +82,11 @@ export default new Peach({
       }
     },
     instruct: {
-      handle: (method, collection, options) => [
+      getPermit: (user) => [
+        { log: "user" }
+      ],
+      handle: (method, collection, options, user) => [
+        "getPermit",
         { concat: method, to: "url" },
         { if: "needsFormat", true: "formatOptions" },
         "fetch"
