@@ -106,7 +106,7 @@ api.get("/:sheetName/db/:id", (req, res) => init(req, res, "buildGetOptions"));
 
 api.put("/:sheetName/db/:id", (req, res) => init(req, res, "buildUpdateOneOptions"));
 
-api.put("/:sheetName/db/:id", (req, res) => init(req, res, "buildUpdateManyOptions"));
+api.put("/:sheetName/db", (req, res) => init(req, res, "buildUpdateManyOptions"));
 
 api.post("/:sheetName/db", (req, res) => init(req, res, "buildInsertOptions"));
 
