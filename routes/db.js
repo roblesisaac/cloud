@@ -43,7 +43,7 @@ const handler = new Peach({
             _id = req.params.id,
             action = "updateOne",
             filter = { _id: { $oid: _id } },
-            update: {
+            update = {
                 $set: req.body
             },
             options = {
