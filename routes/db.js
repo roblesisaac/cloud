@@ -11,11 +11,19 @@ const handler = new Peach({
 
         this._remember({ params, collection });
       },
-      buildDeleteOptions: function() {        
+      buildDeleteOneOptions: function() {        
           var { req } = this,
             _id = req.params.id,
             action = "deleteOne",
             filter = { _id: { $oid: _id } },
+            options = { filter };
+
+        this._remember({ action, options });
+      },
+      buildDeleteManyOptions: function() {        
+          var { req } = this,
+            action = "deleteMany",
+            filter = req.query,
             options = { filter };
 
         this._remember({ action, options });
@@ -114,11 +122,11 @@ api.get("/:sheetName/db", (req, res) => init(req, res, "buildGetOptions"));
 api.get("/:sheetName/db/:id", (req, res) => init(req, res, "buildGetOptions"));
 
 api.put("/:sheetName/db/:id", (req, res) => init(req, res, "buildUpdateOneOptions"));
-
 api.put("/:sheetName/db", (req, res) => init(req, res, "buildUpdateManyOptions"));
 
 api.post("/:sheetName/db", (req, res) => init(req, res, "buildInsertOptions"));
 
-api.delete("/:sheetName/db/:id", (req, res) => init(req, res, "buildDeleteOptions"));
+api.delete("/:sheetName/db/:id", (req, res) => init(req, res, "buildDeleteOneOptions"));
+api.delete("/:sheetName/db", (req, res) => init(req, res, "buildDeleteManyOptions"));
 
 export default handler;
