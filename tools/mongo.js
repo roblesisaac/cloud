@@ -64,8 +64,8 @@ export default new Peach({
             
             console.log({ newValue });
             if(newValue) options[prop] = newValue;
-            console.log({ filter });
             if(filter) delete filter[prop];
+            console.log({ filter });
           }
           
         });
