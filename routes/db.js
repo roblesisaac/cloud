@@ -118,7 +118,6 @@ const init = (req, res, buildOptions) => {
 }
 
 api.get("/:sheetName/db", (req, res) => init(req, res, "buildGetOptions"));
-
 api.get("/:sheetName/db/:id", (req, res) => init(req, res, "buildGetOptions"));
 
 api.put("/:sheetName/db/:id", (req, res) => init(req, res, "buildUpdateOneOptions"));
