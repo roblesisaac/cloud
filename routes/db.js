@@ -22,7 +22,6 @@ const handler = new Peach({
         this._remember({ action, options });
       },
       buildGetOptions: function() {
-        console.log(oak);
         var { req } = this,
             filter = req.query,
             _id = req.params.id,
@@ -96,7 +95,7 @@ const handler = new Peach({
       }
     },
     instruct: {
-        init: (nameOfBuild, req, res) => [
+        init: (req, res, nameOfBuild) => [
             { 
               params: req.params, 
               collection: "params.sheetName"
@@ -113,19 +112,15 @@ const handler = new Peach({
     }
 });
 
-const port = (req, res, nameOfBuild) => {
-    handler.init(nameOfBuild, req, res);
-};
+api.get("/:sheetName/db", (req, res) => handler.init(req, res, "buildGetOptions"));
+api.get("/:sheetName/db/:id", (req, res) => handler.init(req, res, "buildGetOptions"));
 
-api.get("/:sheetName/db", (req, res) => port(req, res, "buildGetOptions"));
-api.get("/:sheetName/db/:id", (req, res) => port(req, res, "buildGetOptions"));
+api.put("/:sheetName/db/:id", (req, res) => handler.init(req, res, "buildUpdateOneOptions"));
+api.put("/:sheetName/db", (req, res) => handler.init(req, res, "buildUpdateManyOptions"));
 
-api.put("/:sheetName/db/:id", (req, res) => port(req, res, "buildUpdateOneOptions"));
-api.put("/:sheetName/db", (req, res) => port(req, res, "buildUpdateManyOptions"));
+api.post("/:sheetName/db", (req, res) => handler.init(req, res, "buildInsertOptions"));
 
-api.post("/:sheetName/db", (req, res) => port(req, res, "buildInsertOptions"));
-
-api.delete("/:sheetName/db/:id", (req, res) => port(req, res, "buildDeleteOneOptions"));
-api.delete("/:sheetName/db", (req, res) => port(req, res, "buildDeleteManyOptions"));
+api.delete("/:sheetName/db/:id", (req, res) => handler.init(req, res, "buildDeleteOneOptions"));
+api.delete("/:sheetName/db", (req, res) => handler.init(req, res, "buildDeleteManyOptions"));
 
 export default handler;
