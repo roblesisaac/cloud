@@ -106,6 +106,10 @@ const handler = new Peach({
             "sanitizeResponse",
             "serve"    
         ]
+    },
+    catch: function (error) {
+        var { res } = this;
+        res.send("there was an error");
     }
 });
 
