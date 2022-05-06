@@ -53,6 +53,20 @@ const handler = new Peach({
 
         this._remember({ action, options });
       },
+      buildUpdateManyOptions: function() {
+        var { req } = this,
+            action = "updateMany",
+            filter = req.query,
+            update = {
+                $set: req.body
+            },
+            options = {
+                filter,
+                update
+            };
+
+        this._remember({ action, options });
+      },
       fetch: function() {
         var { action, collection, options, next } = this;
 
@@ -91,6 +105,8 @@ api.get("/:sheetName/db", (req, res) => init(req, res, "buildGetOptions"));
 api.get("/:sheetName/db/:id", (req, res) => init(req, res, "buildGetOptions"));
 
 api.put("/:sheetName/db/:id", (req, res) => init(req, res, "buildUpdateOneOptions"));
+
+api.put("/:sheetName/db/:id", (req, res) => init(req, res, "buildUpdatManyOptions"));
 
 api.post("/:sheetName/db", (req, res) => init(req, res, "buildInsertOptions"));
 
