@@ -37,7 +37,7 @@ export default new Peach({
         var { options } = this,
             { filter } = options;
           
-        const select = () => {
+        const test = () => {
             return "tester";
         }
         
