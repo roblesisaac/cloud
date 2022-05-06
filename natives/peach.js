@@ -7,6 +7,7 @@ function Peach(blueprint) {
 
   var natives = {
     _blueprint: obj.copy(blueprint),
+    _catch: blueprint.catch ? obj.copy(blueprint.catch) : null,
     _steps: Object.assign({}, this._library.steps, blueprint.steps)
   };
 
@@ -34,23 +35,20 @@ Peach.prototype.addGlobalSteps = function(steps) {
   Object.assign(Peach.prototype._library.steps, steps);
 };
 
-function buildPeach(instructions, peach, peachName) {
+function buildPeach(stepsArr, peach, peachName) {
   var getSteps = function(args) {
-    var stepsArr = convert.toInstruct(instructions, args);
-    return buildSteps(stepsArr, peach, peachName);
+    var instructs = convert.toInstruct(stepsArr, args);
+    return buildSteps(instructs, peach, peachName);
   };
   
   var peachMethod = function(memory, parentSpecial, peachIsForeign) {
-    var _args = arguments,
-        userArgs = getArgs(instructions, _args);
+    var _args = arguments;
     
-    var getMemory = (_resolve, _rej, _peachName) => {
+    var getMemory = (res, _rej, _peachName) => {
       var isMemory = obj.deep(memory, "constructor.name") == "Memory";
-          
-      _resolve = [_resolve];
       
       if(isMemory) {
-        memory._resolve = _resolve.concat(memory._resolve);
+        memory._res = [res].concat(memory._res);
             
         if(peachIsForeign || memory._args[1]) {
           memory._absorb(peach);
@@ -59,12 +57,13 @@ function buildPeach(instructions, peach, peachName) {
         return memory;
       }
 
-      var tools = { _resolve, _rej, _peachName, _args: [_args] };
-      return new Memory(peach)._remember(userArgs)._addTools(tools);
+      var tools = { _res: [res], _rej, _peachName, _args: [_args] };
+      
+      return new Memory(peach)._addTools(tools);
     };
-    
-    return new Promise(function(resolve, reject) {
-      var memry = getMemory(resolve, reject, peachName),
+
+    return new Promise(function(res, rej) {
+      var memry = getMemory(res, rej, peachName),
           args = memry._args,
           arg = args[1] ? args.shift() : args[0],
           steps = getSteps(arg);
@@ -85,10 +84,10 @@ function buildPeach(instructions, peach, peachName) {
       var { _args, _step } = this,
           { specialProp, peach, methodName } = _step;
           
-      _args.unshift(convert.toArray(args));
+      _args.unshift(convert.toArray(args))
       
       peachMethod(this, specialProp, peach[methodName]).then(next);
-    };
+    }
   });
   obj.assignNative(peach, peachName, peachMethod);
 }
@@ -169,7 +168,9 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
     },
     handleError: function(memory, error) {
       var { _rej, _peachName } = memory,
-        errMessage = {
+          { _catch } = peach;   
+      
+      var errMessage = {
         error,
         methodName,
         peachName,
@@ -178,8 +179,14 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         stepPrint
       };
       
-      if (_rej && typeof _rej == "function") {
-        _rej(errMessage);
+      var builtIn = _catch ? _catch[_peachName] || _catch : null;
+      
+      const handler =  builtIn || _rej;
+      
+      console.log(handler.toString());
+      
+      if (handler && typeof handler == "function") {
+        handler(errMessage);
         return;
       }
 
@@ -188,11 +195,11 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
     },
     method: function(memory, rabbitTrail, parentSpecial) {
       var { nextStep, isFinalStep, isSpecial, isVariation, handleError } = this,
-          { _resolve, _args } = memory;
+          { _res, _args } = memory;
 
       var method = peach[methodName] || peach._steps[methodName] || stepPrint,
           theSpecial = specialProp || parentSpecial,
-          updater = theSpecial == "if" ? "_condition" : "_last",
+          updater = theSpecial == "if" ? "_condition" : "res",
           self = this;
 
       var next = function(res) {
@@ -205,7 +212,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         }
 
         if (isFinalStep || memory._endAll) {
-          var resolve = rabbitTrail || _resolve.shift();
+          var resolve = rabbitTrail || _res.shift();
 
           if (typeof resolve == "function") {
             var output = memory[updater] || [];
