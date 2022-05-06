@@ -46,8 +46,8 @@ export default new Peach({
                     let projection = {};
 
                     value.split(" ").forEach(selection => {
-                        console.log({ selection: selection.includes("-") });
-                        projection[selection] = selection.includes("-") ? 0 : 1; 
+                        projection[selection] = selection.includes("-") ? 0 : 1;
+                        console.log({ projection });
                     });
 
                     options.projection = projection;
