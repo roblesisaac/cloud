@@ -33,11 +33,11 @@ Memory.prototype._absorb = function(peach) {
     var assignProp = (prop) => {
       var value = data[prop];
 
-      if (obj.hasProp(assignee, prop)) {
+      if (prop in assignee) {
         return;
       };
 
-      if (obj.hasProp(peach, prop)) {
+      if (prop in peach) {
         getAndSetFromPeach(prop);
         return;
       }
