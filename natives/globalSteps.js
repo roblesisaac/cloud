@@ -114,7 +114,7 @@ const globalSteps = {
     var counter = obj.tip(this, prop),
         { item, prop } = counter;
     
-    if(amount) {
+    if(amount && !isNaN(parseFloat(amount))) {
       item[prop] = item[prop] + amount;
     } else {
       item[prop]++; 
