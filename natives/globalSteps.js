@@ -13,7 +13,7 @@ const globalSteps = {
     alert(message || messageProp);
   },
   concat: function(dataProp) {
-    var data = obj.deep(this, dataProp) || dataProp,
+    var data = obj.deep(this, dataProp),
         to = obj.tip(this, this.to),
         { item, prop } = to;
     
@@ -114,7 +114,7 @@ const globalSteps = {
     var counter = obj.tip(this, prop),
         { item, prop } = counter;
     
-    if(amount) {
+    if(amount && !isNaN(parseFloat(amount))) {
       item[prop] = item[prop] + amount;
     } else {
       item[prop]++; 
