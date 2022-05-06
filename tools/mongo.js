@@ -73,7 +73,7 @@ export default new Peach({
         next();
       },
       needsFormat: function() {
-        var valids = ["insert", "insertMany"],
+        var valids = ["findOne", "find"],
             { method, next } = this;
             
         next(valids.includes(method)); 
