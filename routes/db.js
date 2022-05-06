@@ -11,6 +11,15 @@ const handler = new Peach({
 
         this._remember({ params, collection });
       },
+      buildDeleteOptions: function() {        
+          var { req } = this,
+            _id = req.params.id,
+            action = "deleteOne",
+            filter = { _id: { $oid: _id } },
+            options = { filter };
+
+        this._remember({ action, options });
+      },
       buildGetOptions: function() {
         var { req } = this,
             filter = req.query,
@@ -109,5 +118,7 @@ api.put("/:sheetName/db/:id", (req, res) => init(req, res, "buildUpdateOneOption
 api.put("/:sheetName/db", (req, res) => init(req, res, "buildUpdateManyOptions"));
 
 api.post("/:sheetName/db", (req, res) => init(req, res, "buildInsertOptions"));
+
+api.delet("/:sheetName/db/:id", (req, res) => init(req, res, "buildDeleteOptions"));
 
 export default handler;
