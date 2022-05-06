@@ -4,13 +4,6 @@ import db from "../tools/mongo.js";
 
 const handler = new Peach({
     steps: {
-      assignNatives: function() {
-        var { req } = this,
-            params = req.params,
-            collection = params.sheetName;
-
-        this._remember({ params, collection });
-      },
       buildDeleteOneOptions: function() {        
           var { req } = this,
             _id = req.params.id,
@@ -107,7 +100,6 @@ const handler = new Peach({
               params: req.params, 
               collection: "params.sheetName"
             },
-            // "assignNatives",
             nameOfBuild,
             "fetch",
             "sanitizeResponse",
