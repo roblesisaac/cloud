@@ -186,7 +186,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
       const handler =  builtIn || _rej;
       
       if (handler && typeof handler == "function") {
-        handler(errMessage);
+        handler.call(memory, errMessage);
         return;
       }
 
