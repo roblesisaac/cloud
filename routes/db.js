@@ -119,6 +119,6 @@ api.put("/:sheetName/db", (req, res) => init(req, res, "buildUpdateManyOptions")
 
 api.post("/:sheetName/db", (req, res) => init(req, res, "buildInsertOptions"));
 
-api.delet("/:sheetName/db/:id", (req, res) => init(req, res, "buildDeleteOptions"));
+api.delete("/:sheetName/db/:id", (req, res) => init(req, res, "buildDeleteOptions"));
 
 export default handler;
