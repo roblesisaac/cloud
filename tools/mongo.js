@@ -37,14 +37,13 @@ export default new Peach({
         var { options } = this,
             { filter } = options;
           
-        const tester = () => {
+        const select = () => {
             return "tester";
         }
         
         var formats = {
             limit: Number,
-            skip: Number,
-            select: tester
+            skip: Number
         };
             
         Object.keys(options).forEach(prop => {
