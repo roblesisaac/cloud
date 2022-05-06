@@ -22,6 +22,7 @@ const handler = new Peach({
         this._remember({ action, options });
       },
       buildGetOptions: function() {
+        console.log(oak);
         var { req } = this,
             filter = req.query,
             _id = req.params.id,
