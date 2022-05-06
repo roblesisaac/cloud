@@ -34,28 +34,28 @@ export default new Peach({
           .catch(next);
       },
       formatOptions: function() {
-            var { options, next } = this,
-                { filter } = options;
-          
-            const formats = {
-                limit: Number,
-                skip: Number,
-                select: (value) => {
-                    if(!value) return;
+        var { options, next } = this,
+            { filter } = options;
 
-                    let projection = {};
+        const formats = {
+            limit: Number,
+            skip: Number,
+            select: (value) => {
+                if(!value) return;
 
-                    value.split(" ").forEach(selection => {
-                        const removeProp = selection.includes("-");
-                              
-                        selection = selection.replace("-", "");        
-                        projection[selection] = removeProp ? 0 : 1;
-                    });
+                let projection = {};
 
-                    options.projection = projection;
-                    delete options.select;
-                }
-            };
+                value.split(" ").forEach(selection => {
+                    const removeProp = selection.includes("-");
+
+                    selection = selection.replace("-", "");        
+                    projection[selection] = removeProp ? 0 : 1;
+                });
+
+                options.projection = projection;
+                delete options.select;
+            }
+        };
             
         Object.keys(options).forEach(prop => {
           
