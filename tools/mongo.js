@@ -71,12 +71,18 @@ export default new Peach({
         });
         
         next();
+      },
+      needsFormat: function() {
+        var valids = ["insert", "insertMany"],
+            { method, next } = this;
+            
+        next(valids.includes(method)); 
       }
     },
     instruct: {
       handle: (method, collection, options) => [
         { concat: method, to: "url" },
-        "formatOptions",
+        { if: "needsFormat", true: "formatOptions" },
         "fetch"
       ]
     }
