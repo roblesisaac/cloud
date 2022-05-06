@@ -58,7 +58,7 @@ export default new Peach({
         };
           
         const assignFormat = (prop) => {
-          if(!obj.hasProp(formats, prop)) {
+          if(prop in formats == "false") {
             return;
           }
 
