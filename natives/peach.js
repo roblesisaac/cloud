@@ -44,8 +44,6 @@ function buildPeach(instructions, peach, peachName) {
   var peachMethod = function(memory, parentSpecial, peachIsForeign) {
     var _args = arguments,
         userArgs = getArgs(instructions, _args);
-        
-    console.log({ memory });
     
     var getMemory = (_resolve, _rej, _peachName) => {
       var isMemory = obj.deep(memory, "constructor.name") == "Memory";
