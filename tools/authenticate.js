@@ -12,7 +12,7 @@ export default new Peach({
       
 //     ],
     user: (user) => [
-      { log: "user" }
+      { log: user }
     ]
   }
 });
