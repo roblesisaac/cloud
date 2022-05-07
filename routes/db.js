@@ -112,11 +112,11 @@ const handler = new Peach({
     }
 });
 
-api.get("/:sheetName/data", (req, res) => {
-    var items = await data.get("user:*");
+// api.get("/:sheetName/data", (req, res) => {
+//     var items = await data.get("user:*");
     
-    res.json(items);
-});
+//     res.json(items);
+// });
 
 api.get("/:sheetName/db", (req, res) => handler.init(req, res, "buildGetOptions"));
 api.get("/:sheetName/db/:id", (req, res) => handler.init(req, res, "buildGetOptions"));
