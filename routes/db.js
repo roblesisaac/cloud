@@ -1,4 +1,4 @@
-import { api } from "@serverless/cloud";
+import { api, data } from "@serverless/cloud";
 import { Peach } from "../natives/peach.js";
 import db from "../tools/mongo.js";
 
@@ -110,6 +110,12 @@ const handler = new Peach({
         var { res } = this;
         res.json(error);
     }
+});
+
+api.get("/:sheetName/data", (req, res) => {
+    var items = await data.get("user:*");
+    
+    res.json(items);
 });
 
 api.get("/:sheetName/db", (req, res) => handler.init(req, res, "buildGetOptions"));
