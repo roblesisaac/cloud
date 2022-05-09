@@ -57,7 +57,6 @@ function buildPeach(instructions, peach, peachName) {
         
         _args.forEach((_argName, index) => {
           _args.splice(index, 1, memory[_argName] || _argName);
-          console.log({_args});
         });
             
         if(peachIsForeign || memory._args[1]) {
@@ -68,6 +67,7 @@ function buildPeach(instructions, peach, peachName) {
       }
 
       var tools = { _resolve, _rej, _peachName, _args: [_args] };
+      console.log({ tools })
       return new Memory(peach)._remember(userArgs)._addTools(tools);
     };
     
