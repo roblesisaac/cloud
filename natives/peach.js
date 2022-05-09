@@ -56,7 +56,9 @@ function buildPeach(instructions, peach, peachName) {
         _args = getArgNames(instructions);
         
         _args.forEach((_argName, index) => {
-          _args.splice(index, 1, memory[_argName] || _argName);
+          var _argValue = memory[_argName] || _argName;
+          
+          _args.splice(index, 1, _argValue);
         });
             
         if(peachIsForeign || memory._args[1]) {
@@ -94,7 +96,7 @@ function buildPeach(instructions, peach, peachName) {
       var { _args, _step } = this,
           { specialProp, peach, methodName } = _step;
           
-      _args.unshift(_args(;convert.toArray(args));
+      _args.unshift(convert.toArray(args));
       
       peachMethod(this, specialProp, peach[methodName]).then(next);
     };
