@@ -1,4 +1,4 @@
-import { convert, getArgs, obj, type } from "./utils.js";
+import { convert, getArgNames, getArgs, obj, type } from "./utils.js";
 import { Memory } from "./memory.js";
 import { globalSteps } from "./globalSteps.js";
 
