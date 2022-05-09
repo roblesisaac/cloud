@@ -64,9 +64,9 @@ function buildPeach(instructions, peach, peachName) {
           memory._absorb(peach);
         }
         
-        // memory._args = memory._args.unshift(_args);
+        memory._args = memory._args.unshift(_args);
         
-        console.log({ _args: memory._args });
+        console.log({ _args: memory._args.slice() });
         
         return memory;
       }
