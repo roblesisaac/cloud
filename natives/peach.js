@@ -67,7 +67,6 @@ function buildPeach(instructions, peach, peachName) {
       }
 
       var tools = { _resolve, _rej, _peachName, _args: [_args] };
-      console.log({ tools })
       return new Memory(peach)._remember(userArgs)._addTools(tools);
     };
     
