@@ -52,19 +52,14 @@ function buildPeach(instructions, peach, peachName) {
       if(isMemory) {
         memory._resolve = _resolve.concat(memory._resolve);
         
-        _args = getArgNames(instructions);
-        
-        _args.forEach((_argName, index) => {
-          var _argValue = memory[_argName] || _argName;
-          
-          _args.splice(index, 1, _argValue);
-        });
+        var argNames = getArgNames(instructions),
+            subArgs = argNames.map(argName => memory[argName] || argName);
+            
+        memory._args.unshift(subArgs);
             
         if(peachIsForeign || memory._args[1]) {
           memory._absorb(peach);
         }
-        
-        memory._args.unshift(_args);
         
         return memory;
       }
