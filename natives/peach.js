@@ -63,7 +63,7 @@ function buildPeach(instructions, peach, peachName) {
           memory._absorb(peach);
         }
         
-        console.log({ memory });
+        memory._args = memory._args.unshift(_args);
         
         return memory;
       }
@@ -94,7 +94,7 @@ function buildPeach(instructions, peach, peachName) {
       var { _args, _step } = this,
           { specialProp, peach, methodName } = _step;
           
-      _args.unshift(convert.toArray(args));
+      _args.unshift(_args(;convert.toArray(args));
       
       peachMethod(this, specialProp, peach[methodName]).then(next);
     };
