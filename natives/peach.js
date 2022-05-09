@@ -56,8 +56,8 @@ function buildPeach(instructions, peach, peachName) {
         _args = getArgNames(instructions);
         
         _args.forEach((_argName, index) => {
-          console.log({ _argName, index, memory });
           _args.splice(index, 1, memory[_argName] || _argName);
+          console.log({_args});
         });
             
         if(peachIsForeign || memory._args[1]) {
