@@ -42,8 +42,7 @@ function buildPeach(instructions, peach, peachName) {
   };
   
   var peachMethod = function(memory, parentSpecial, peachIsForeign) {
-    var _args = arguments,
-        userArgs = getArgs(instructions, _args);
+    var _args = arguments;
     
     var getMemory = (_resolve, _rej, _peachName) => {
       var isMemory = obj.deep(memory, "constructor.name") == "Memory";
@@ -67,10 +66,14 @@ function buildPeach(instructions, peach, peachName) {
         
         memory._args = memory._args.unshift(_args);
         
+        console.log(memory._args);
+        
         return memory;
       }
 
-      var tools = { _resolve, _rej, _peachName, _args: [_args] };
+      var tools = { _resolve, _rej, _peachName, _args: [_args] },
+          userArgs = getArgs(instructions, _args);
+          
       return new Memory(peach)._remember(userArgs)._addTools(tools);
     };
     
@@ -79,8 +82,6 @@ function buildPeach(instructions, peach, peachName) {
           args = memry._args,
           arg = args[1] ? args.shift() : args[0],
           steps = getSteps(arg);
-          
-      console.log({ arg });
           
       steps.method(memry, null, parentSpecial);
     });
