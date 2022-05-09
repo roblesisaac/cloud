@@ -1,4 +1,4 @@
-import { convert, getArgNames, getArgs, obj, type } from "./utils.js";
+import { convert, getArgs, obj, type } from "./utils.js";
 import { Memory } from "./memory.js";
 import { globalSteps } from "./globalSteps.js";
 
@@ -56,6 +56,7 @@ function buildPeach(instructions, peach, peachName) {
         _args = getArgNames(instructions);
         
         _args.forEach((_argName, index) => {
+          console.log({ _argName, index });
           _args.splice(index, 1, memory[_argName] || _argName);
         });
             
