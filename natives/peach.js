@@ -63,6 +63,8 @@ function buildPeach(instructions, peach, peachName) {
           memory._absorb(peach);
         }
         
+        console.log({ memory });
+        
         return memory;
       }
 
