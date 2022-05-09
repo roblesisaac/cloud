@@ -80,6 +80,8 @@ function buildPeach(instructions, peach, peachName) {
           arg = args[1] ? args.shift() : args[0],
           steps = getSteps(arg);
           
+      console.log({ arg });
+          
       steps.method(memry, null, parentSpecial);
     });
   };
