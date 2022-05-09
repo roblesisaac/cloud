@@ -52,6 +52,12 @@ function buildPeach(instructions, peach, peachName) {
       
       if(isMemory) {
         memory._resolve = _resolve.concat(memory._resolve);
+        
+        _args = getArgNames(instructions);
+        
+        _args.forEach((_argName, index) => {
+          _args.splice(index, 1, memory[_argName] || _argName);
+        });
             
         if(peachIsForeign || memory._args[1]) {
           memory._absorb(peach);
