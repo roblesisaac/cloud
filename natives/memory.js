@@ -61,8 +61,6 @@ Memory.prototype._absorb = function(peach) {
 };
 
 Memory.prototype._remember = function() {
-  if(!arguments.length) return this;
-  
   var args = Array.from(arguments);
   
   args.forEach(data => {
