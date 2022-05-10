@@ -66,7 +66,9 @@ Memory.prototype._remember = function() {
   var args = Array.from(arguments);
   
   args.forEach(data => {
-    if(!data) return;
+    if(!data) return;    
+    
+    Object.assign(this, data);
     
     for(var key in data) {
       var value = data[key],
@@ -76,8 +78,6 @@ Memory.prototype._remember = function() {
 
       item[prop] = changeTo || value;
     }
-    
-    Object.assign(this, data);
     
   });
   
