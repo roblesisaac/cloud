@@ -291,12 +291,12 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
       var args = setupArgs(),
           data = stepData(methodName),
           autoCompletes = method.toString().includesAny("next", "return");
-      
-      memory
-        ._remember(data)
-        ._addTools({ _step: this, next });
 
       try {
+        memory
+          ._remember(data)
+          ._addTools({ _step: this, next });
+        
         method.apply(memory, args);
       } catch (error) {
         handleError(memory, error.toString());
