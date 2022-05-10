@@ -63,6 +63,8 @@ Memory.prototype._absorb = function(peach) {
 Memory.prototype._remember = function() {
   if(!arguments.length) return this;
   
+  var self = this;
+  
   Array.from(arguments).forEach(data => {
     if(!data) return;    
     
@@ -72,25 +74,16 @@ Memory.prototype._remember = function() {
       var value = data[key],
 //           def = obj.tip(this, key),
 //           { item, prop } = def,
-          changeTo = obj.deep(this, value);
+          changeTo = obj.deep(self, value);
       
-      if(typeof changeTo == "string") {
-        console.log({ 
-          item: obj.deep(item, "constructor.name"), 
-          prop,
-          old: item[prop], 
-          changeTo,
-          value
-        });
-      
-        this[key] = changeTo || value;
+        self[key] = changeTo || value;
 //         item[prop] = changeTo || value;
       }
     }
     
   });
   
-  return this;
+  return self;
 };
 
 Memory.prototype._addTools = function(data) {
