@@ -208,9 +208,10 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         
         if (theSpecial && memory._conditions) {
           memory._conditions.push(res);
-        } else {
-          memory[updater] = Array.from(args);
+          return;
         }
+        
+        memory[updater] = Array.from(args);
       };
       
       var resolveLast = function() {
