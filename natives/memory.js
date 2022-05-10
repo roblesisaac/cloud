@@ -61,17 +61,17 @@ Memory.prototype._absorb = function(peach) {
 };
 
 Memory.prototype._remember = function() {
-  var args = Array.from(arguments);
+  if(!arguments.length) return this;
   
-  args.forEach(data => {
+  Array.from(arguments).forEach(data => {
     if(!data) return;    
     
 //     Object.assign(this, data);
     
     for(var key in data) {
       var value = data[key],
-          def = obj.tip(this, key),
-          { item, prop } = def,
+//           def = obj.tip(this, key),
+//           { item, prop } = def,
           changeTo = obj.deep(this, value);
       
       if(typeof changeTo == "string") {
@@ -83,15 +83,13 @@ Memory.prototype._remember = function() {
           value
         });
       
+        this[key] = changeTo || value;
 //         item[prop] = changeTo || value;
       }
     }
     
   });
   
-//   for (var i in arguments) {
-//     Object.assign(this, arguments[i]);
-//   }
   return this;
 };
 
