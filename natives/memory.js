@@ -78,7 +78,7 @@ Memory.prototype._remember = function() {
       
       if(typeof changeTo == "string") {
         console.log({ 
-          item: obj.deep(item, "constructor.name")), 
+          item: obj.deep(item, "constructor.name"), 
           prop,
           old: item[prop], 
           changeTo 
