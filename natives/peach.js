@@ -263,8 +263,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
               memoryValue = obj.deep(memory, value);
               
           console.log({
-            memoryValue,
-            value
+            item, prop
           })
               
           item[prop] = memoryValue || value;
