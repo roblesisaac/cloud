@@ -256,15 +256,6 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
           delete stepPrint[arguments[i]];
         }
         
-        // for (var key in stepPrint) {
-        //   var value = stepPrint[key],
-        //       def = obj.tip(memory, key),
-        //       { item, prop } = def,
-        //       changeTo = obj.deep(memory, value);
-              
-        //   item[prop] = changeTo || value;
-        // }
-        
         return stepPrint;
       };
 
