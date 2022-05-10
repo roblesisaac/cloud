@@ -294,7 +294,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
 
       try {
         memory
-          ._remember(data)
+          ._import(data)
           ._addTools({ _step: this, next });
         
         method.apply(memory, args);
