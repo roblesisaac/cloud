@@ -263,7 +263,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
               memoryValue = obj.deep(memory, value);
               
           console.log({
-            isMemory: obj.deep(item, "constructor.name") == "Memory"), prop
+            isMemory: obj.deep(item, "constructor.name") == "Memory", prop
           })
               
           item[prop] = memoryValue || value;
