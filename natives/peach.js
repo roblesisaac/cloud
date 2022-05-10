@@ -123,6 +123,8 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         : type.isObject(stepPrint)
         ? Object.keys(stepPrint)[0]
         : stepPrint.name || typeof stepPrint;
+        
+  var isSpecial = specials.includes(methodName);
 
   var buildSub = function(index, sProp, instructs, previous) {
     instructs = instructs || stepsArr;
@@ -135,34 +137,25 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
     peach,
     peachName,
     isFinalStep: stepsArr.length == index+1,
-    isSpecial: specials.includes(methodName),
+    isSpecial,
     isVariation: !!peach[methodName] || methodName == "peachMethod",
     index,
     methodName,
     prev,
     stepPrint,
     init: function() {
-      var setupComplete;
+      if(!isSpecial) {
+        return;
+      }
+      
+      var specialStepData = {};
 
-      var setupSpecial = (special) => {
-        var isSpecial = obj.hasProp(stepPrint, special);
+      for (var sProp in stepPrint) {
+        var instructs = convert.toArray(stepPrint[sProp]).flat();
+        specialStepData[sProp] = buildSub(0, sProp, instructs, prev);
+      }
 
-        if (!isSpecial || setupComplete) {
-          return;
-        }
-
-        var specialData = {};
-
-        for (var sProp in stepPrint) {
-          var instructs = convert.toArray(stepPrint[sProp]).flat();
-          specialData[sProp] = buildSub(0, sProp, instructs, prev);
-        }
-
-        this[special] = specialData;
-        setupComplete = true;
-      };
-
-      specials.forEach(setupSpecial);
+      this[special] = specialStepData;
 
       return this;
     },
