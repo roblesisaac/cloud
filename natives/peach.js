@@ -247,7 +247,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         return arr.concat([next]);
       };
 
-      var rememberStepData = () => {
+      var rememberStepData = function() {
         if (!isObj || isSpecial) {
           return;
         }
@@ -263,8 +263,6 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
               
           item[prop] = obj.deep(memory, value) || value;
         }
-        
-        memory._remember(stepPrint);
       };
 
       if(memory._error) {
