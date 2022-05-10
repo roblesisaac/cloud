@@ -259,9 +259,15 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         for (var key in stepPrint) {
           var value = stepPrint[key],
               def = obj.tip(memory, key),
-              { item, prop } = def;
+              { item, prop } = def,
+              memoryValue = obj.deep(memory, value);
               
-          item[prop] = obj.deep(memory, value) || value;
+          console.log({
+            memoryValue,
+            value
+          })
+              
+          item[prop] = memoryValue || value;
         }
         
         return stepPrint;
@@ -292,7 +298,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
           autoCompletes = method.toString().includesAny("next", "return");
 
       memory
-        // ._remember(data)
+        ._remember(data)
         ._addTools({ _step: this, next });
 
       try {
