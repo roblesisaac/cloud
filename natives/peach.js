@@ -145,7 +145,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
     stepPrint,
     init: function() {
       if(!isSpecial) {
-        return;
+        return this;
       }
       
       var specialStepData = {};
@@ -193,7 +193,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
       return;
     },
     method: function(memory, rabbitTrail, parentSpecial) {
-      var { nextStep, isFinalStep, isSpecial, isVariation, handleError } = this,
+      var { nextStep, isFinalStep, isVariation, handleError } = this,
           { _resolve, _args } = memory;
 
       var method = peach[methodName] || peach._steps[methodName] || stepPrint,
