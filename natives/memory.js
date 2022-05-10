@@ -63,10 +63,10 @@ Memory.prototype._absorb = function(peach) {
 Memory.prototype._remember = function() {
   if(!arguments.length) return this;
   
-  for (var i in arguments) {
-    var data = arguments[i];
-    
-    console.log({ data });
+  var args = Array.from(arguments);
+  
+  args.forEach(data => {
+    if(!data) return;
     
     for(var key in data) {
       var value = data[key],
@@ -77,7 +77,8 @@ Memory.prototype._remember = function() {
       item[prop] = changeTo || value;
     }
     
-  }
+  });
+  
 //   for (var i in arguments) {
 //     Object.assign(this, arguments[i]);
 //   }
