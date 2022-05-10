@@ -82,6 +82,20 @@ Memory.prototype._remember = function() {
   return this;
 };
 
+Memory.prototype._import = function() {
+  if(!arguments.length) return this;
+  
+  var assignArg = (data) => {
+    if(!type.isObject(data)) return;
+    
+    Object.assign(this, data);
+  };
+  
+  Array.from(arguments).forEach(assignArg);
+  
+  return this;
+};
+
 Memory.prototype._addTools = function(data) {
   var config = (prop) => {
     return {
