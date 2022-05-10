@@ -68,18 +68,16 @@ Memory.prototype._remember = function() {
   args.forEach(data => {
     if(!data) return;
     
-    console.log(Object.keys(data).length == 0 ? { data } : Object.keys(data));
+    for(var key in data) {
+      var value = data[key],
+          def = obj.tip(this, key),
+          { item, prop } = def,
+          changeTo = obj.deep(this, value);
+
+      item[prop] = changeTo || value;
+    }
     
     Object.assign(this, data);
-    
-//     for(var key in data) {
-//       var value = data[key],
-//           def = obj.tip(this, key),
-//           { item, prop } = def,
-//           changeTo = obj.deep(this, value);
-
-//       item[prop] = changeTo || value;
-//     }
     
   });
   
