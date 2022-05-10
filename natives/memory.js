@@ -75,8 +75,13 @@ Memory.prototype._remember = function() {
           def = obj.tip(this, key),
           { item, prop } = def,
           changeTo = obj.deep(this, value);
-     
-      console.log({ prop, old: typeof item[prop], changeTo: typeof changeTo, value: typeof value });
+      
+      
+      var old = item[prop];
+      
+      if(typeof old == "string") {
+        console.log({ prop, old, changeTo, value }); 
+      }
 
 //       item[prop] = changeTo || value;
     }
