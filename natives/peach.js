@@ -292,7 +292,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
           autoCompletes = method.toString().includesAny("next", "return");
 
       memory
-        ._remember(data)
+        // ._remember(data)
         ._addTools({ _step: this, next });
 
       try {
