@@ -253,7 +253,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         }
 
         for (var i in arguments) {
-          console.log(arguments[i]);
+          console.log({ arg: typeof arguments[i] })
           delete stepPrint[arguments[i]];
         }
         
