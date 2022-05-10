@@ -89,8 +89,11 @@ Memory.prototype._import = function() {
     if(!type.isObject(data)) return;
     
     for(var key in data) {
-      console.log({ key });
-      this[key] = obj.value(this, data[key]) || data[key];
+      var option1 = obj.value(this, data[key]),
+          option2 = data[key];
+                         
+      console.log({ key, option1, option2 });
+      this[key] = option2 || option1;
     }
 //     Object.assign(this, data);
   };
