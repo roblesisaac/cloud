@@ -124,7 +124,9 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         ? Object.keys(stepPrint)[0]
         : stepPrint.name || typeof stepPrint;
         
-  var isSpecial = specials.includes(methodName);
+  var isSpecial = specials.includes(methodName),
+      isFinalStep = stepsArr.length == index+1,
+      isVariation = !!peach[methodName] || methodName == "peachMethod";
 
   var buildSub = function(index, sProp, instructs, previous) {
     instructs = instructs || stepsArr;
@@ -136,9 +138,9 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
   return {
     peach,
     peachName,
-    isFinalStep: stepsArr.length == index+1,
+    isFinalStep,
     isSpecial,
-    isVariation: !!peach[methodName] || methodName == "peachMethod",
+    isVariation,
     index,
     methodName,
     prev,
@@ -193,15 +195,14 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
       return;
     },
     method: function(memory, rabbitTrail, parentSpecial) {
-      var { nextStep, isFinalStep, isVariation, handleError } = this,
+      var { nextStep, handleError } = this,
           { _resolve, _args } = memory;
 
       var method = peach[methodName] || peach._steps[methodName] || stepPrint,
           theSpecial = specialProp || parentSpecial,
-          updater = theSpecial == "if" ? "_condition" : "_last",
-          self = this;
+          updater = theSpecial == "if" ? "_condition" : "_last";
 
-      var next = function(res) {
+      var next = (res) => {
         if (arguments.length) {
           if (theSpecial && memory._conditions) {
             memory._conditions.push(res);
