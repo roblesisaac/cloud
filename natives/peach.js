@@ -155,7 +155,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         specialStepData[sProp] = buildSub(0, sProp, instructs, prev);
       }
 
-      this[special] = specialStepData;
+      this[methodName] = specialStepData;
 
       return this;
     },
