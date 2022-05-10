@@ -201,7 +201,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
       var method = peach[methodName] || peach._steps[methodName] || stepPrint,
           theSpecial = specialProp || parentSpecial,
           updater = theSpecial == "if" ? "_condition" : "_last",
-          self = this;
+          nextPrint = nextStep.call(this);
 
       var next = function(res) {
         if (arguments.length) {
@@ -222,8 +222,8 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
 
           return;
         }
-
-        nextStep.call(self).method(memory, rabbitTrail, parentSpecial);
+        
+        nextPrint.method(memory, rabbitTrail, parentSpecial);
       };
 
       var setupArgs = () => {
