@@ -86,6 +86,7 @@ export default new Peach({
       handle: (action, collection, options, user) => [
         authenticate.user,
         { concat: action, to: "url" },
+        { log: "namer", namer: "eli isaac" },
         { if: "needsFormat", true: "formatOptions" },
         "fetch"
       ]
