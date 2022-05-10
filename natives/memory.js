@@ -81,7 +81,7 @@ Memory.prototype._remember = function() {
     
   });
   
-  return self;
+  return this;
 };
 
 Memory.prototype._addTools = function(data) {
