@@ -76,14 +76,9 @@ Memory.prototype._remember = function() {
           { item, prop } = def,
           changeTo = obj.deep(this, value);
       
-      
-      var old = item[prop];
-      
-      if(typeof old == "string") {
-        console.log({ prop, old, changeTo, value }); 
+      if(typeof changeTo == "string") {
+        item[prop] = changeTo || value;
       }
-
-//       item[prop] = changeTo || value;
     }
     
   });
