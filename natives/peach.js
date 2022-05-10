@@ -247,7 +247,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         return arr.concat([next]);
       };
 
-      var stepData = function() {
+      var stepData = () => {
         if (!isObj || isSpecial) {
           return;
         }
