@@ -247,28 +247,24 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         return arr.concat([next]);
       };
 
-      var stepData = () => {
+      var rememberStepData = () => {
         if (!isObj || isSpecial) {
-          return {};
+          return;
         }
 
         for (var i in arguments) {
           delete stepPrint[arguments[i]];
         }
-
-        return stepPrint;
-      };
-      
-      var rememberStepData = () => {
-        var data = stepData();
-
-        for (var key in data) {
-          var value = data[key],
+        
+        for (var key in stepPrint) {
+          var value = stepPrint[key],
               def = obj.tip(memory, key),
               { item, prop } = def;
               
           item[prop] = obj.deep(memory, value) || value;
         }
+        
+        memory._remember(stepPrint);
       };
 
       if(memory._error) {
@@ -292,12 +288,10 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
       }
 
       var args = setupArgs(),
-          data = stepData(methodName),
           autoCompletes = method.toString().includesAny("next", "return");
-
-      memory
-        ._remember(data)
-        ._addTools({ _step: this, next });
+      
+      rememberStepData(methodName);
+      memory._addTools({ _step: this, next });
 
       try {
         method.apply(memory, args);
