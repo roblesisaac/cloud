@@ -222,7 +222,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
           return;
         }
 
-        nextStep.call(self).method(memory, rabbitTrail, parentSpecial);
+        nextStep.call(this).method(memory, rabbitTrail, parentSpecial);
       };
 
       var setupArgs = () => {
