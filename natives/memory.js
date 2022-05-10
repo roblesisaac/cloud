@@ -68,7 +68,7 @@ Memory.prototype._remember = function() {
   args.forEach(data => {
     if(!data) return;
     
-    console.log(Object.keys(data));
+    console.log(Object.keys(data).length == 0 ? { data } : Object.keys(data));
     
     Object.assign(this, data);
     
