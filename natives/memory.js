@@ -77,7 +77,13 @@ Memory.prototype._remember = function() {
           changeTo = obj.deep(this, value);
       
       if(typeof changeTo == "string") {
-        console.log({ old: item[prop], changeTo });
+        console.log({ 
+          item: obj.deep(item, "constructor.name")), 
+          prop,
+          old: item[prop], 
+          changeTo 
+        });
+      
 //         item[prop] = changeTo || value;
       }
     }
