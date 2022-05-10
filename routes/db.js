@@ -78,7 +78,6 @@ const handler = new Peach({
         this._remember({ action, options });
       },
       fetch: function() {
-          console.log(oak);
         var { action, collection, options, next } = this;
 
         db.handle(action, collection, options, { username: "irobles1030" }).then(next);
