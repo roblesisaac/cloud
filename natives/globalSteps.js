@@ -51,7 +51,7 @@ const globalSteps = {
         iteration = each.run || each.async;
 
     var methodForEach = (i, item, nxt) => {
-      this._remember({ i, item });
+      this._import({ i, item });
       iteration.method(this, nxt);
     };
 
