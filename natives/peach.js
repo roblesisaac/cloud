@@ -249,7 +249,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
 
       var stepData = function() {
         if (!isObj || isSpecial) {
-          return;
+          return {};
         }
 
         for (var i in arguments) {
