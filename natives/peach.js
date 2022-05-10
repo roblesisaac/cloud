@@ -145,7 +145,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
       var setupComplete;
 
       var setupSpecial = (special) => {
-        var isSpecial = special in stepPrint;
+        var isSpecial = obj.hasProp(stepPrint, special);
 
         if (!isSpecial || setupComplete) {
           return;
