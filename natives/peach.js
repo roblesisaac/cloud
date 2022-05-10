@@ -202,24 +202,34 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
           theSpecial = specialProp || parentSpecial,
           updater = theSpecial == "if" ? "_condition" : "_last",
           nextPrint = nextStep.call(this);
+          
+      var relayLast = function(args) {
+        if (!args.length) return;
+        
+        if (theSpecial && memory._conditions) {
+          memory._conditions.push(res);
+        } else {
+          memory[updater] = Array.from(args);
+        }
+      };
+      
+      var resolveLast = function() {
+        var resolve = rabbitTrail || _resolve.shift();
+
+        if (typeof resolve != "function") {
+          return;
+        }
+        
+        var output = memory[updater] || [];
+        
+        resolve(output[0]);
+      };
 
       var next = function(res) {
-        if (arguments.length) {
-          if (theSpecial && memory._conditions) {
-            memory._conditions.push(res);
-          } else {
-            memory[updater] = Array.from(arguments);
-          }
-        }
+        relayLast(arguments);
 
         if (isFinalStep || memory._endAll) {
-          var resolve = rabbitTrail || _resolve.shift();
-
-          if (typeof resolve == "function") {
-            var output = memory[updater] || [];
-            resolve(output[0]);
-          }
-
+          resolveLast();
           return;
         }
         
