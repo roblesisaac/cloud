@@ -68,6 +68,8 @@ Memory.prototype._remember = function() {
   args.forEach(data => {
     if(!data) return;
     
+    console.log(Object.keys(data));
+    
     for(var key in data) {
       var value = data[key],
           def = obj.tip(this, key),
