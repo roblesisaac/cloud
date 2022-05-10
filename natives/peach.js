@@ -247,7 +247,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         return arr.concat([next]);
       };
 
-      var stepData = () => {
+      var stepData = function() {
         if (!isObj || isSpecial) {
           return;
         }
@@ -300,7 +300,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
       console.log({ argType2: typeof methodName });
       
       memory
-        ._remember(data)
+        // ._remember(data)
         ._addTools({ _step: this, next });
 
       try {
