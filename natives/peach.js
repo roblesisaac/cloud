@@ -263,8 +263,6 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
               
           item[prop] = obj.deep(memory, value) || value;
         }
-        
-        console.log({ memory });
       };
 
       if(memory._error) {
@@ -289,11 +287,10 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
 
       var args = setupArgs(),
           autoCompletes = method.toString().includesAny("next", "return");
-      
-      rememberStepData(methodName);
-      memory._addTools({ _step: this, next });
 
       try {
+        rememberStepData(methodName);
+        memory._addTools({ _step: this, next });
         method.apply(memory, args);
       } catch (error) {
         handleError(memory, error.toString());
