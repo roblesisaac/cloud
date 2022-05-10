@@ -247,6 +247,18 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
 
         return stepPrint;
       };
+      
+      var rememberStepData = () => {
+        var data = stepData();
+
+        for (var key in data) {
+          var value = data[key],
+              def = obj.tip(memory, key),
+              { item, prop } = def;
+              
+          item[prop] = obj.deep(memory, value) || value;
+        }
+      };
 
       if(memory._error) {
         handleError(memory, memory._error);
@@ -264,16 +276,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
       }
 
       if (typeof method != "function") {
-        var data = stepData();
-
-        for (var key in data) {
-          var value = data[key],
-              def = obj.tip(memory, key),
-              { item, prop } = def;
-              
-          item[prop] = obj.deep(memory, value) || value;
-        }
-        
+        rememberStepData();
         return next();
       }
 
