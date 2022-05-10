@@ -253,7 +253,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         }
 
         for (var i in arguments) {
-          console.log({ arg: typeof arguments[i] })
+          console.log({ argType1: typeof arguments[i] })
           delete stepPrint[arguments[i]];
         }
         
@@ -296,7 +296,9 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
       var args = setupArgs(),
           data = stepData(methodName),
           autoCompletes = method.toString().includesAny("next", "return");
-
+      
+      console.log({ argType2: typeof methodName });
+      
       memory
         ._remember(data)
         ._addTools({ _step: this, next });
