@@ -63,10 +63,10 @@ Memory.prototype._absorb = function(peach) {
 Memory.prototype._remember = function() {
   if(!arguments.length) return this;
   
+  var importData = {};
+  
   Array.from(arguments).forEach(data => {
     if(!data) return;    
-    
-//     Object.assign(this, data);
     
     for(var key in data) {
       var value = data[key],
@@ -74,12 +74,14 @@ Memory.prototype._remember = function() {
 //           { item, prop } = def,
           changeTo = obj.deep(this, value);
       
-        this[key] = changeTo || value;
+        importData[key] = changeTo || value;
 //      item[prop] = changeTo || value;
 
     }
     
   });
+  
+  Object.assign(this, importData);
   
   return this;
 };
