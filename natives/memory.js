@@ -77,8 +77,8 @@ Memory.prototype._remember = function() {
           changeTo = obj.deep(self, value);
       
         self[key] = changeTo || value;
-//         item[prop] = changeTo || value;
-      }
+//      item[prop] = changeTo || value;
+
     }
     
   });
