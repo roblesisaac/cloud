@@ -263,6 +263,8 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
               
           item[prop] = obj.deep(memory, value) || value;
         }
+        
+        console.log({ memory });
       };
 
       if(memory._error) {
