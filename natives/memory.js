@@ -63,20 +63,21 @@ Memory.prototype._absorb = function(peach) {
 Memory.prototype._remember = function() {
   if(!arguments.length) return this;
   
-  Array.from(arguments).forEach(data => {
-    if(!data || typeof data == "string") return;    
-    
-    for(var key in data) {
-      var value = data[key],
-          def = obj.tip(this, key),
-          { item, prop } = def,
-          changeTo = obj.deep(this, value);
-      
-     item[prop] = changeTo || value;
+  var assignMemoryValue = (memory, data, key) => {
+    var value = data[key],
+        def = obj.tip(memory, key),
+        { item, prop } = def;
 
-    }
+    item[prop] = obj.deep(memory, value) || value;
+  };
+  
+  var assignArg = (data) => {
+    if(!type.isObject(data)) return;
     
-  });
+    Object.keys(data).forEach((key) => assignMemoryValue(this, data, key));
+  };
+  
+  Array.from(arguments).forEach(assignArg);
   
   return this;
 };
