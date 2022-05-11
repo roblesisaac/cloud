@@ -84,7 +84,7 @@ export default new Peach({
     },
     instruct: {
       handle: (action, collection, options, user) => [
-        authenticate._user({ ysuername: "test" }),
+        authenticate.user_({ ysuername: "test" }),
         { concat: action, to: "url" },
         { if: "needsFormat", true: "formatOptions" },
         "fetch"
