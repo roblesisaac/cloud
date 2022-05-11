@@ -94,11 +94,11 @@ function buildPeach(instructions, peach, peachName) {
     
     function testName(res, next) {
       var { _args, _step } = this,
-          { specialProp, peach, methodName } = _step;
+          { specialProp, peach, methodName, method } = _step;
           
       _args.unshift(Array.from(args));
       
-      console.log({ method: method.name, peachName });
+      console.log({ keys: Object.keys(peach), peachName });
       
       peachMethod(this, specialProp, !!peach[methodName], true).then(next);
     }
