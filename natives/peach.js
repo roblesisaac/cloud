@@ -87,14 +87,14 @@ function buildPeach(instructions, peach, peachName) {
     peach._library.peachs[peachName] = peachMethod;
   }
 
-  obj.assignNative(peach, peachName+"_", function(args) {
+  obj.assignNative(peach, peachName+"_", function() {
     return function(res, next) {
       var { _args, _step } = this,
           { specialProp, peach, methodName } = _step;
           
-      _args.unshift(convert.toArray(args));
+      _args.unshift(convert.toArray(arguments));
       
-      peachMethod(this, specialProp, peach[methodName]).then(next);
+      peachMethod(this, specialProp, !!peach[methodName]).then(next);
     };
   });
   obj.assignNative(peach, peachName, peachMethod);
@@ -144,6 +144,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
     index,
     methodName,
     prev,
+    specialProp,
     stepPrint,
     init: function() {
       if(!isSpecial) {
