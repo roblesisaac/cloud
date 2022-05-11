@@ -96,7 +96,6 @@ function buildPeach(instructions, peach, peachName) {
 }
 
 function buildWithSpecialArgs(peachMethod) {
-  console.log("buildWithSpecialArgs");
   return function() {
     var specialArgs = arguments;
     
