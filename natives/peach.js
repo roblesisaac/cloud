@@ -88,26 +88,24 @@ function buildPeach(instructions, peach, peachName) {
   if (peachName != "run") {
     peach._library.peachs[peachName] = peachMethod;
   }
-  
-  function buildForeign() {
+
+  obj.assignNative(peach, peachName+"_", buildForeign(peachMethod));
+  obj.assignNative(peach, peachName, peachMethod);
+}
+
+function buildForeign(peachMethod) {
+  return function() {
     var args = arguments;
     
-    function testName(res, next) {
+    return function (res, next) {
       var { _args, _step } = this,
           { specialProp, peach, methodName, method } = _step;
           
       _args.unshift(Array.from(args));
       
-      console.log({ _step });
-      
       peachMethod(this, specialProp, !!peach[methodName], true).then(next);
-    }
-    
-    return testName;
-  }
-
-  obj.assignNative(peach, peachName+"_", buildForeign);
-  obj.assignNative(peach, peachName, peachMethod);
+    };
+  };
 }
 
 function getStep(sIndex, args, steps) {
