@@ -94,7 +94,7 @@ function buildPeach(instructions, peach, peachName) {
           
       _args.unshift(convert.toArray(args));
       
-      peachMethod(this, specialProp, peach[methodName]).then(next);
+      peachMethod(this, specialProp, !!peach[methodName]).then(next);
     };
   });
   obj.assignNative(peach, peachName, peachMethod);
