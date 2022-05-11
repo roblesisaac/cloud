@@ -100,7 +100,7 @@ function buildPeach(instructions, peach, peachName) {
       
       console.log({ peach, peachName });
       
-      peachMethod(this, specialProp, !!peach[methodName], true).then(next);
+      peach[peachName](this, specialProp, !!peach[methodName], true).then(next);
     }
     
     return testName;
