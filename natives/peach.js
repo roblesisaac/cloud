@@ -58,12 +58,14 @@ function buildPeach(instructions, peach, peachName) {
         
         if(specialArgs) {
           memory._args.unshift(Array.from(specialArgs));
-        } else {
-          var argNames = getArgNames(instructions),
-              subArgs = argNames.map(argName => memory[argName] || argName);
-              
-          memory._args.unshift(subArgs);
+          
+          return memory;
         }
+        
+        var argNames = getArgNames(instructions),
+            subArgs = argNames.map(argName => memory[argName] || argName);
+            
+        memory._args.unshift(subArgs);
         
         return memory;
       }
