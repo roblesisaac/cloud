@@ -155,7 +155,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
 
       for (var sProp in stepPrint) {
         var instructs = convert.toArray(stepPrint[sProp]).flat();
-        this[methodName] = buildSub(0, sProp, instructs, prev);
+        this[methodName][sProp] = buildSub(0, sProp, instructs, prev);
       }
 
       // this[methodName] = specialStepData;
