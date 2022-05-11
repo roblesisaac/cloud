@@ -96,7 +96,7 @@ function buildPeach(instructions, peach, peachName) {
           
       _args.unshift(Array.from(args));
       
-      console.log({ _args });
+      console.log(args[0]);
       
       peachMethod(this, specialProp, !!peach[methodName]).then(next);
     };
