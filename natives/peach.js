@@ -88,11 +88,13 @@ function buildPeach(instructions, peach, peachName) {
   }
 
   obj.assignNative(peach, peachName+"_", function() {
+    var args = arguments;
+    
     return function(res, next) {
       var { _args, _step } = this,
           { specialProp, peach, methodName } = _step;
           
-      _args.unshift(convert.toArray(arguments));
+      _args.unshift(convert.toArray(args));
       
       console.log({ _args });
       
