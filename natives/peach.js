@@ -213,8 +213,6 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
           nextPrint = nextStep.call(this);
           
       var relayLast = function(args) {
-        if (!args.length) return;
-        
         if (theSpecial && memory._conditions) {
           memory._conditions.push(res);
           return;
@@ -223,23 +221,21 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         memory[updater] = Array.from(args);
       };
       
-      var resolveLast = function() {
+      var resolveLast = function(output=[]) {
         var resolve = rabbitTrail || _resolve.shift();
 
         if (typeof resolve != "function") {
           return;
         }
         
-        var output = memory[updater] || [];
-        
         resolve(output[0]);
       };
 
       var next = function(res) {
-        relayLast(arguments);
+        if(arguments.length) relayLast(arguments);
 
         if (isFinalStep || memory._endAll) {
-          resolveLast();
+          resolveLast(memory[updater]);
           return;
         }
         
