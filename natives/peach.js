@@ -102,9 +102,11 @@ function buildForeign() {
         
     _args.unshift(Array.from(args));
     
-    peachMethod(this, specialProp, !!peach[methodName], true).then(next);
+    console.log({ methodName, peachName })
+    
+    // peachMethod(this, specialProp, !!peach[methodName], true).then(next);
   };
-};
+}
 
 function getStep(sIndex, args, steps) {
   steps = steps || this.steps(args);
