@@ -92,7 +92,7 @@ function buildPeach(instructions, peach, peachName) {
   function buildForeign() {
     var args = arguments;
     
-    return function(res, next) {
+    function testName(res, next) {
       var { _args, _step } = this,
           { specialProp, peach, methodName } = _step;
           
@@ -101,7 +101,9 @@ function buildPeach(instructions, peach, peachName) {
       console.log({ methodName: methodName.name, peachName });
       
       peachMethod(this, specialProp, !!peach[methodName], true).then(next);
-    };
+    }
+    
+    return testName;
   }
 
   obj.assignNative(peach, peachName+"_", buildForeign);
