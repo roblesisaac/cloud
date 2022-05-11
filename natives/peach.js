@@ -41,7 +41,7 @@ function buildPeach(instructions, peach, peachName) {
     return buildSteps(stepsArr, peach, peachName);
   };
   
-  var peachMethod = function(memory, parentSpecial, peachIsForeign, hasSpecialArgs) {
+  var peachMethod = function(memory, parentSpecial, peachIsForeign, specialArgs) {
     var _args = arguments;
     
     var getMemory = (_resolve, _rej, _peachName) => {
@@ -56,7 +56,9 @@ function buildPeach(instructions, peach, peachName) {
           memory._absorb(peach);
         }
         
-        if(!hasSpecialArgs) {
+        if(specialArgs) {
+          memory._args.unshift(Array.from(specialArgs));
+        } else {
           var argNames = getArgNames(instructions),
               subArgs = argNames.map(argName => memory[argName] || argName);
               
@@ -89,21 +91,19 @@ function buildPeach(instructions, peach, peachName) {
     peach._library.peachs[peachName] = peachMethod;
   }
 
-  obj.assignNative(peach, peachName+"_", buildForeign(peachMethod));
+  obj.assignNative(peach, peachName+"_", buildWithSpecialArgs(peachMethod));
   obj.assignNative(peach, peachName, peachMethod);
 }
 
-function buildForeign(peachMethod) {
+function buildWithSpecialArgs(peachMethod) {
   return function() {
-    var args = arguments;
+    var specialArgs = arguments;
     
     return function (res, next) {
-      var { _args, _step } = this,
-          { specialProp, peach, methodName, method } = _step;
-          
-      _args.unshift(Array.from(args));
+      var { _step } = this,
+          { specialProp, peach, methodName } = _step;
       
-      peachMethod(this, specialProp, !!peach[methodName], true).then(next);
+      peachMethod(this, specialProp, !!peach[methodName], specialArgs).then(next);
     };
   };
 }
