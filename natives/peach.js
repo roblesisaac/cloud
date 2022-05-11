@@ -150,14 +150,15 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
         return this;
       }
       
-      var specialStepData = {};
+      // var specialStepData = {};
+      this[methodName] = {};
 
       for (var sProp in stepPrint) {
         var instructs = convert.toArray(stepPrint[sProp]).flat();
-        specialStepData[sProp] = buildSub(0, sProp, instructs, prev);
+        this[methodName] = buildSub(0, sProp, instructs, prev);
       }
 
-      this[methodName] = specialStepData;
+      // this[methodName] = specialStepData;
 
       return this;
     },
