@@ -94,7 +94,7 @@ function buildPeach(instructions, peach, peachName) {
       var { _args, _step } = this,
           { specialProp, peach, methodName } = _step;
           
-      _args.unshift(convert.toArray(args));
+      _args.unshift(Array.from(args));
       
       console.log({ _args });
       
