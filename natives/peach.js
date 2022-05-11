@@ -286,7 +286,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
 
       var args = setupArgs(),
           data = stepData(methodName),
-          autoCompletes = method.toString().includesAny("next", "return");
+          autoCompletes = method.toString().includesAny("next", "return;");
 
       try {
         memory
