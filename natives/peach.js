@@ -205,7 +205,7 @@ function buildSteps(stepsArr, peach, peachName, prev, stepIndex, specialProp) {
     },
     method: function(memory, rabbitTrail, parentSpecial) {
       var { nextStep, handleError } = this,
-          { _resolve, _args } = memory;
+          { _resolve } = memory;
 
       var method = peach[methodName] || peach._steps[methodName] || stepPrint,
           theSpecial = specialProp || parentSpecial,
